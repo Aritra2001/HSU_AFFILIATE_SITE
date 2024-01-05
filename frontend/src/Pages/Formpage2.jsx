@@ -82,9 +82,9 @@ const Formpage2 = () => {
     <div className="text-white text-[46px] font-bold font-['Poppins'] mt-[13vh] max-sm:mt-[2rem] max-sm:text-[36px]">
         Form
     </div>
-    <div className="w-[852px] h-[584.17px] rounded-2xl border border-white backdrop-blur-[22px] mt-[5vh] justify-center flex flex-col items-center max-sm:border-none max-sm:w-screen max-sm:backdrop-blur-0 max-sm:mt-[-4.5rem]">
+    <div className="w-[852px] h-[584.17px] rounded-2xl border border-white backdrop-blur-[22px] mt-[5vh] justify-center flex flex-col items-center max-sm:border-none max-sm:w-screen max-sm:backdrop-blur-0 max-sm:mt-[-2.8rem]">
         <div className='custom-select'>
-        <select aria-label="Select ID Type" className="w-[754.71px] h-[70.73px] bg-zinc-300 bg-opacity-0 rounded-[15px] border border-zinc-300  text-[25px] font-normal font-['Montserrat'] indent-[3rem] max-sm:w-[280px] max-sm:text-[15px] max-sm:h-[50px]"  style={{ color: id_type ? "#fff" : "#696969" }} value={id_type} onChange={(e) => setIdtype(e.target.value)} required>
+        <select aria-label="Select ID Type" className="w-[754.71px] h-[70.73px] bg-zinc-300 bg-opacity-0 rounded-[15px] border border-zinc-300  text-[25px] font-normal font-['Montserrat'] indent-[3rem] max-sm:w-[280px] max-sm:text-[15px] max-sm:h-[50px] max-sm:mt-[5rem]"  style={{ color: id_type ? "#fff" : "#696969" }} value={id_type} onChange={(e) => setIdtype(e.target.value)} required>
         <option value="null">Select ID Type *</option>
         <option value="Addhar">Addhar Card</option>ss
         <option value="Voter">Voter Card</option>
@@ -95,9 +95,10 @@ const Formpage2 = () => {
         <input className="w-[754.71px] h-[70.73px] bg-zinc-300 bg-opacity-0 rounded-[15px] border border-zinc-300 placeholder:text-neutral-500 text-[25px] font-normal font-['Montserrat'] indent-[3rem] mt-[2rem] max-sm:w-[280px] max-sm:text-[15px] max-sm:indent-[2rem] max-sm:h-[50px] max-sm:mt-[1.5rem]" placeholder='Expectations' value={expectation} onChange={(e) => setExpectation(e.target.value)} type='text' required></input>
         <input className="w-[754.71px] h-[70.73px] bg-zinc-300 bg-opacity-0 rounded-[15px] border border-zinc-300 placeholder:text-neutral-500 text-[25px] font-normal font-['Montserrat'] indent-[3rem] mt-[2rem] max-sm:w-[280px] max-sm:text-[15px] max-sm:indent-[2rem] max-sm:h-[50px] max-sm:mt-[1.5rem] max-sm:bg-zinc-900" placeholder='Institution *' type='text' value={institution} onChange={(e) => setInstitute(e.target.value)} required></input>
         <input className="w-[754.71px] h-[70.73px] bg-zinc-300 bg-opacity-0 rounded-[15px] border border-zinc-300 placeholder:text-neutral-500 text-[25px] font-normal font-['Montserrat'] indent-[3rem] mt-[2rem] max-sm:w-[280px] max-sm:text-[15px] max-sm:indent-[2rem] max-sm:h-[50px] max-sm:mt-[1.5rem] max-sm:bg-zinc-900" placeholder='DD-MM-YYYY *'type='text' value={dob} onChange={(e) => setDob(e.target.value)} required></input>
+        <button className="w-[189px] h-[67px] bg-violet-600 rounded-[10px] border-white text-white text-3xl font-bold font-['Poppins'] mt-[7vh] mb-[10vh] max-sm:w-[280px] max-sm:h-[40px] max-sm:mt-[3rem] max-sm:text-[22px] sm:hidden max-sm:mb-[5rem]" onClick={handelClick}>Submit</button>
       </div>
       <ToastContainer theme="dark"/>
-    <button className="w-[189px] h-[67px] bg-violet-600 rounded-[10px] border-white text-white text-3xl font-bold font-['Poppins'] mt-[7vh] mb-[10vh] max-sm:w-[280px] max-sm:h-[40px] max-sm:text-[22px] max-sm:mt-[-4rem] max-sm:mb-[8rem]" onClick={handelClick} disabled={loading}>{loading ? <>Loading...</> : <>Submit</>}</button>
+    <button className="w-[189px] h-[67px] bg-violet-600 rounded-[10px] border-white text-white text-3xl font-bold font-['Poppins'] mt-[7vh] mb-[10vh] max-sm:w-[280px] max-sm:h-[40px] max-sm:text-[22px] max-sm:mt-[-4rem] max-sm:mb-[8rem] max-sm:hidden" onClick={handelClick} disabled={loading}>{loading ? <>Loading...</> : <>Submit</>}</button>
     {error && <div className='error'>{error}</div>}
   </div>
   );
