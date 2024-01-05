@@ -65,7 +65,7 @@ const affiliate_post = async (req, res) => {
             throw Error('Date format is incorrect!')
         }
 
-        const aff = await affiliates.create({ name, email, phone, experience, id_type, id_proof, expectation, institution, dob: date.toISOString() })
+        await affiliates.create({ name, email, phone, experience, id_type, id_proof, expectation, institution, dob})
         res.status(200).json({message: 'New Affiliate Added'})
     } catch (error) {
         res.status(400).json({error: error.message})
