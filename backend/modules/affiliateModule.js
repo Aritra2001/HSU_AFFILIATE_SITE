@@ -37,7 +37,7 @@ const AffiliateSchema = new Schema({
         required: true
     },
     dob: {
-        type: Date,
+        type: String,
         required: true
     }
 }, {timestamps: true})
