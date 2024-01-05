@@ -7,7 +7,7 @@ const Heropage = () => {
   const navigator = useNavigate()
 
   return (
-    <div className='w-full flex flex-col justify-center items-center'>
+    <div className='w-full h-fit flex flex-col justify-center items-center'>
       <Navbar/>
       <div className="relative text-white text-[90px] font-bold font-['Poppins'] max-sm:text-[26px] flex mt-[8vh]">Affiliate Program</div>
       <div className=" max-sm:text-sm text-white text-4xl font-normal font-['Poppins'] max-sm:w-[209px] text-center">Promote space Tech Training & <span className="text-violet-600 text-4xl font-normal font-['Poppins'] max-sm:text-sm">Earn rewards</span></div>
@@ -39,7 +39,7 @@ const Heropage = () => {
         </div>
       </div>
 
-      <button className="w-[250px] h-[67.11px] bg-violet-600 rounded-[10px] border-white text-white text-[25px] font-bold font-['Poppins'] mt-[7rem] mb-[10rem] max-sm:w-[100px] max-sm:h-[26.89px] max-sm:text-[10px] max-sm:mt-[2rem] max-sm:mb-[8rem]" onClick={() => navigator('/page1')}>Fill the form</button>
+      <button className="w-[250px] h-[67.11px] bg-violet-600 rounded-[10px] border-white text-white text-[25px] font-bold font-['Poppins'] mt-[7rem] mb-[10rem] max-sm:w-[100px] max-sm:h-[26.89px] max-sm:text-[10px] max-sm:mt-[2rem] max-sm:mb-[2rem]" onClick={() => navigator('/page1')}>Fill the form</button>
 
     </div>
   );
