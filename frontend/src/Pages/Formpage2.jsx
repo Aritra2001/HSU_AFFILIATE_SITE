@@ -34,7 +34,7 @@ const Formpage2 = () => {
 
     const affiliate = { name, email, phone, experience, id_type, id_proof, expectation, institution, dob }
     setLoading(true)
-    const response = await fetch('https://hsu-affiliate-site-ph69-git-main-aritra2001.vercel.app/api/affiliate', {
+    const response = await fetch('https://hsu-affiliate-site-ph69.vercel.app/api/affiliate', {
 
     method: 'POST',
       body: JSON.stringify(affiliate),
