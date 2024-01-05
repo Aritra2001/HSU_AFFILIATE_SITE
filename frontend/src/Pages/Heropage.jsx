@@ -39,7 +39,7 @@ const Heropage = () => {
         </div>
       </div>
 
-      <button className="w-[250px] h-[67.11px] bg-violet-600 rounded-[10px] border-white text-white text-[25px] font-bold font-['Poppins'] mt-[7rem] mb-[10rem] max-sm:w-[100px] max-sm:h-[26.89px] max-sm:text-[10px] max-sm:mt-[2rem] max-sm:mb-2" onClick={() => navigator('/page1')}>Fill the form</button>
+      <button className="w-[250px] h-[67.11px] bg-violet-600 rounded-[10px] border-white text-white text-[25px] font-bold font-['Poppins'] mt-[7rem] mb-[10rem] max-sm:w-[100px] max-sm:h-[26.89px] max-sm:text-[10px] max-sm:mt-[2rem] max-sm:mb-[8rem]" onClick={() => navigator('/page1')}>Fill the form</button>
 
     </div>
   );
