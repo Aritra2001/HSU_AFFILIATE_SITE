@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Prompt:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Prompt:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Prompt:wght@800&display=swap');
+
+body {
+  background-image: url('./assets/bg.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+input {
+  color: #fff;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+option {
+  background-color: #1B1B1B;
+}
+select {
+  appearance: none;
+  background-image: url('./assets/dropdown.svg');
+  background-repeat: no-repeat;
+  background-position: 90%; 
+  background-color: #1B1B1B !important;
+}
+@media screen and (max-width: 600px) {
+  body {
+    background-image: url('./assets/bgPhoneview.svg');
+    background-size: cover;
+  }
+  ::placeholder {
+    font-size: 15px;
+  }
+}
+#login:hover,li:hover {
+  transition: 0.3s;
+  color: #844CFE;
+}
+button:disabled {
+  background-color: #8f8f8f;
+  color: #1B1B1B;
+}
