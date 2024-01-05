@@ -84,7 +84,7 @@ const Formpage2 = () => {
     </div>
     <div className="w-[852px] h-[584.17px] rounded-2xl border border-white backdrop-blur-[22px] mt-[5vh] justify-center flex flex-col items-center max-sm:border-none max-sm:w-screen max-sm:backdrop-blur-0 max-sm:mt-[-2.8rem]">
         <div className='custom-select'>
-        <select aria-label="Select ID Type" className="w-[754.71px] h-[70.73px] bg-zinc-300 bg-opacity-0 rounded-[15px] border border-zinc-300  text-[25px] font-normal font-['Montserrat'] indent-[3rem] max-sm:w-[280px] max-sm:text-[15px] max-sm:h-[50px] max-sm:mt-[5rem]"  style={{ color: id_type ? "#fff" : "#696969" }} value={id_type} onChange={(e) => setIdtype(e.target.value)} required>
+        <select aria-label="Select ID Type" className="w-[754.71px] h-[70.73px] bg-zinc-300 bg-opacity-0 rounded-[15px] border border-zinc-300  text-[25px] font-normal font-['Montserrat'] indent-[3rem] max-sm:w-[280px] max-sm:text-[15px] max-sm:h-[50px] max-sm:mt-[5rem] max-sm:indent-[2rem]"  style={{ color: id_type ? "#fff" : "#696969" }} value={id_type} onChange={(e) => setIdtype(e.target.value)} required>
         <option value="null">Select ID Type *</option>
         <option value="Addhar">Addhar Card</option>ss
         <option value="Voter">Voter Card</option>
