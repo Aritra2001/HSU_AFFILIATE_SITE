@@ -36,7 +36,7 @@ const Formpage1 = () => {
   }, [])
 
   return (
-    <div className='w-full h-full flex flex-col justify-center items-center'>
+    <div className='w-full h-fit flex flex-col justify-center items-center'>
       <Navbar />
       <div className="text-white text-[46px] font-bold font-['Poppins'] mt-[13vh] max-sm:mt-[2rem] max-sm:text-[36px]">
         Form
