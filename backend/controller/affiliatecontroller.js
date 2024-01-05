@@ -6,7 +6,7 @@ const affiliate_post = async (req, res) => {
     const { name, email, phone, experience, id_type, id_proof, expectation, institution, dob } = req.body
 
     var isnum =  /^\d+$/.test(phone);
-    var addhar_reg =  /^[2-9]{1}[0-9]{3}\s[0-9]{4}\s[0-9]{4}$/.test(id_proof)
+    var addhar_reg =  /^([0-9]{4}[0-9]{4}[0-9]{4}$)|([0-9]{4}\s[0-9]{4}\s[0-9]{4}$)|([0-9]{4}-[0-9]{4}-[0-9]{4}$)/.test(id_proof)
     var  voter_reg =  /^[A-Z]{3}[0-9]{7}$/.test(id_proof)
     var pan_reg = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(id_proof)
     var date_reg = /^(\d{1,2})-(\d{1,2})-(\d{4})$/.test(dob)

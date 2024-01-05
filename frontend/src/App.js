@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Error from "./Pages/Errorpage";
 import Formpage1 from "./Pages/Formpage1";
 import Formpage2 from "./Pages/Formpage2";
@@ -5,6 +6,17 @@ import Heropage from "./Pages/Heropage";
 import { BrowserRouter, Route, Routes} from 'react-router-dom'
 
 function App() {
+
+  useEffect(() => {
+    try{
+        localStorage.removeItem('name')
+        localStorage.removeItem('email')
+        localStorage.removeItem('phone')
+        localStorage.removeItem('experience')
+    } catch(err) {
+      console.log(err)
+    }
+  },[])
 
   return (
     <BrowserRouter>
