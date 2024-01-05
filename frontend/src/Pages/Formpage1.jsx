@@ -38,7 +38,7 @@ const Formpage1 = () => {
   return (
     <div className='w-full h-fit flex flex-col justify-center items-center'>
       <Navbar />
-      <div className="text-white text-[46px] font-bold font-['Poppins'] mt-[13vh] max-sm:mt-[2rem] max-sm:text-[36px]">
+      <div className="text-white text-[46px] font-bold font-['Poppins'] mt-[13vh] max-sm:mt-[3rem] max-sm:text-[36px]">
         Form
       </div>
       <div className="w-[852px] h-[584.17px] rounded-2xl border border-white backdrop-blur-[22px] mt-[5vh] justify-center flex flex-col items-center max-sm:border-none max-sm:w-screen max-sm:backdrop-blur-0 max-sm:mt-[-5rem]">
