@@ -68,9 +68,10 @@ const affiliate_post = async (req, res) => {
 
         //hashing
         const salt = await bcrypt.genSalt(10)
-        const hash = await bcrypt.hash(id_proof, salt)
+        const hash_id = await bcrypt.hash(id_proof, salt)
+        const hash_dob = await bcrypt.hash(dob, salt)
 
-        await affiliates.create({ name, email, phone, experience, id_type, id_proof : hash, expectation, institution, dob})
+        await affiliates.create({ name, email, phone, experience, id_type, id_proof : hash_id, expectation, institution, dob : hash_dob})
         res.status(200).json({message: 'New Affiliate Added'})
     } catch (error) {
         res.status(400).json({error: error.message})
