@@ -4,6 +4,7 @@ import Formpage1 from "./Pages/Formpage1";
 import Formpage2 from "./Pages/Formpage2";
 import Heropage from "./Pages/Heropage";
 import { BrowserRouter, Route, Routes} from 'react-router-dom'
+import Login from "./Pages/Login";
 
 function App() {
 
@@ -24,6 +25,10 @@ function App() {
       <Route 
       path="/"
       element={<Heropage />}
+      />
+      <Route
+      path="/login"
+      element={<Login />}
       />
       <Route
       path="/page1"

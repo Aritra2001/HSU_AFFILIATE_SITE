@@ -17,7 +17,7 @@ const Formpage2 = () => {
   const notify = () => {
     
     if(json.hasOwnProperty('error') === false) {
-      toast.success('You will Receive an Email on Selection!')
+      toast.success('Email sent to you inbox!')
     }
     else {
       toast.error(json.error)
@@ -50,6 +50,7 @@ const Formpage2 = () => {
     if(!response) {
       try {
         setError(json.error)
+        console.log(error)
       } catch(e) {
         throw new Error(e)
       }
@@ -99,7 +100,6 @@ const Formpage2 = () => {
       </div>
       <ToastContainer theme="dark"/>
     <button className="w-[189px] h-[67px] bg-violet-600 rounded-[10px] border-white text-white text-3xl font-bold font-['Poppins'] mt-[7vh] mb-[10vh] max-sm:w-[280px] max-sm:h-[40px] max-sm:text-[22px] max-sm:mt-[-4rem] max-sm:mb-[8rem] max-sm:hidden" onClick={handelClick} disabled={loading}>{loading ? <>Loading...</> : <>Submit</>}</button>
-    {error && <div className='error'>{error}</div>}
   </div>
   );
 }

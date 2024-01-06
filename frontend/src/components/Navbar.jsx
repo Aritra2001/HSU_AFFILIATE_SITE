@@ -18,7 +18,7 @@ const Navbar = () => {
             <a href="https://hexstaruniverse.com/about-us/"><li>about</li></a>
         </ul>
         <div className="flex items-center col-span-1 justify-evenly md:justify-center md:gap-5 md:col-span-2">
-            <a href='https://hexstaruniverse.com/login/' id='login'><button className='hidden md:inline'>Login</button></a>
+            <a href='/login' id='login'><button className='hidden md:inline'>Login</button></a>
             <a href="https://hexstaruniverse.com/mentor-registration/"><button className='px-3 capitalize text-xs bg-[#6637ED] h-8 rounded-md md:text-base '>become an instructor</button></a>
             {/* <Button title="become an instructor"/> */}
             <button className='text-3xl md:hidden' onClick={() => setToggle(!toggle)}>{toggle ? <RxCross1 /> : <GiHamburgerMenu/>}</button>
