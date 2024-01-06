@@ -77,4 +77,33 @@ const affiliate_post = async (req, res) => {
         res.status(400).json({error: error.message})
     }
 }
-module.exports = {affiliate_post}
+
+const login = async (req, res) => {
+
+    const {email, dob} = req.body
+
+    try {
+
+        if(!email || !dob) {
+            throw Error('Mandetory fields must be filled!')
+        }
+    
+        const mail = await affiliates.findOne({ email })
+    
+        if(!mail) {
+            throw Error('Incorrect Email')
+        }
+    
+        const match = await bcrypt.compare(dob, mail.dob)
+    
+        if(!match) {
+            throw Error('Incorrect Password')
+        }
+
+        res.status(200).json({mail})
+    } catch(error) {
+        res.status(400).json({error: error.message})
+    }
+    
+}
+module.exports = {affiliate_post, login}
