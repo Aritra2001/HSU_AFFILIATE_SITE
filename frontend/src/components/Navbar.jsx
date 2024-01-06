@@ -3,10 +3,27 @@ import { useState } from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { RxCross1 } from "react-icons/rx";
 import Logo from '../assets/hsulogo.svg'
+import { useLogout } from '../hooks/useLogout';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
 
   const [toggle, setToggle] = useState(false);
+  const { logout } = useLogout()
+  const { user } = useAuthContext()
+  const navigator = useNavigate()
+
+  const handelLogin = () => {
+
+    if(!user) {
+      navigator('/login')
+    }
+    else {
+      logout()
+    }
+
+  }
 
   return (
     <div className='w-full relative bg-zinc-900'>
@@ -18,7 +35,7 @@ const Navbar = () => {
             <a href="https://hexstaruniverse.com/about-us/"><li>about</li></a>
         </ul>
         <div className="flex items-center col-span-1 justify-evenly md:justify-center md:gap-5 md:col-span-2">
-            <a href='/login' id='login'><button className='hidden md:inline'>Login</button></a>
+            <button className='hidden md:inline' onClick={handelLogin}>{user ? <>Logout</> : <>Login</>}</button>
             <a href="https://hexstaruniverse.com/mentor-registration/"><button className='px-3 capitalize text-xs bg-[#6637ED] h-8 rounded-md md:text-base '>become an instructor</button></a>
             {/* <Button title="become an instructor"/> */}
             <button className='text-3xl md:hidden' onClick={() => setToggle(!toggle)}>{toggle ? <RxCross1 /> : <GiHamburgerMenu/>}</button>

@@ -1,5 +1,6 @@
 import { FaEyeSlash,FaEye } from 'react-icons/fa';
 import { useState } from 'react'
+import { useAuthContext } from '../hooks/useAuthContext';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,6 +12,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const { dispatch } = useAuthContext()
   var json = ''
 
   const submitHandler = async (e) => {
@@ -41,6 +43,8 @@ const Login = () => {
 
     if(response.ok) {
       try {
+        localStorage.setItem('user', JSON.stringify(json))
+        dispatch({type: 'LOGIN', payload: json})
         setError(null)
         setEmail('')
         setDob('')

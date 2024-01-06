@@ -5,8 +5,12 @@ import Formpage2 from "./Pages/Formpage2";
 import Heropage from "./Pages/Heropage";
 import { BrowserRouter, Route, Routes} from 'react-router-dom'
 import Login from "./Pages/Login";
+import { useAuthContext } from "./hooks/useAuthContext";
+import Home from "./Pages/Home";
 
 function App() {
+
+  const { user } = useAuthContext()
 
   useEffect(() => {
     try{
@@ -28,7 +32,7 @@ function App() {
       />
       <Route
       path="/login"
-      element={<Login />}
+      element={!user ? <Login /> : <Home />}
       />
       <Route
       path="/page1"
