@@ -35,6 +35,10 @@ function App() {
       element={!user ? <Login /> : <Home />}
       />
       <Route
+      path="/dashboard"
+      element={!user ? <Login /> : <Home />}
+      />
+      <Route
       path="/page1"
       element={<Formpage1 />}
       />

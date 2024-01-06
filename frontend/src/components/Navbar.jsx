@@ -28,10 +28,11 @@ const Navbar = () => {
   return (
     <div className='w-full relative bg-zinc-900'>
         <nav className="grid items-center justify-between h-20 grid-cols-2 text-white md:grid-cols-6 font-['Gilroy']">
-        <a href="https://hexstaruniverse.com"><img className='w-20 col-span-2 ml-4 lg:w-[120px] lg:ml-14' src={Logo} alt="hexstar universe"/></a>
+        <a href="/"><img className='w-20 col-span-2 ml-4 lg:w-[120px] lg:ml-14' src={Logo} alt="hexstar universe"/></a>
         <ul className='flex-row items-center hidden col-span-3 capitalize space-x-7 md:flex'>
             <a href='https://hexstaruniverse.com/all-classes/'><li>all program</li></a>
             <a href="https://hexstaruniverse.com/for-institutions/"><li>For institutions</li></a>
+            {user ? <a href='/dashboard'><li>home</li></a> : <></>}
             <a href="https://hexstaruniverse.com/about-us/"><li>about</li></a>
         </ul>
         <div className="flex items-center col-span-1 justify-evenly md:justify-center md:gap-5 md:col-span-2">
@@ -48,6 +49,7 @@ const Navbar = () => {
             <ul>
             <a href='https://hexstaruniverse.com/all-classes/'><li>All program</li></a>
             <a href="https://hexstaruniverse.com/for-institutions/"><li>For institutions</li></a>
+            {user ? <a href='/dashboard'><li>Home</li></a> : <></>}
             <a href="https://hexstaruniverse.com/about-us/"><li>About</li></a>
             </ul>
           </div>
