@@ -1,6 +1,10 @@
 const affiliates = require('../modules/affiliateModule')
 const validator = require('validator')
 const bcrypt = require('bcrypt')
+const { Resend } = require("resend");
+
+// Send an email:
+const instanceResend = new Resend(process.env.RESEND_API_KEY);
 
 const affiliate_post = async (req, res) => {
 
@@ -72,6 +76,38 @@ const affiliate_post = async (req, res) => {
         const hash_dob = await bcrypt.hash(dob, salt)
 
         await affiliates.create({ name, email, phone, experience, id_type, id_proof : hash_id, expectation, institution, dob : hash_dob})
+
+        await instanceResend.emails.send({
+            from: 'network@hexstaruniverse.com',
+            to: email,
+            subject: 'Welcome aboard, future Affiliate partner!',
+            html: `<html>
+            <head>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+            </head>
+            <body style="font-family: 'Poppins', sans-serif; font-size: 16px;">
+            <div>
+            <table style="width: 69.9834%;" role="presentation" border="0" width="100%" cellspacing="0" cellpadding="0" align="center">
+            <tbody>
+            <tr>
+            <td style="width: 100%;">
+            <p><span>Hi ${name},</span></p>
+            <p>Thanks for taking the leap and joining us in the Hex-Star Universe affiliate fam!  We're thrilled to have you on board and can't wait to see what amazing things you'll do with our brand.<br/></p>
+            <p>Keep your eyes peeled for a follow-up email (or maybe even a call!) in the next few days. We'll be in touch with all the juicy details about the program, exclusive resources, and how you can connect with other awesome affiliates.<br/></p>
+            <p>In the meantime, feel free to browse our content, get familiar with our products, and let your creative juices flow. We're all about building a community of passionate advocates, and you're officially part of it!<br/></p>
+            <p><span>Excited to have you with us,</span><br/></p>
+            <p><span>The Hex-Star Universe Affiliate Team</span></P>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+            </div>
+            </body>
+            </html>`
+          });
+
         res.status(200).json({message: 'New Affiliate Added'})
     } catch (error) {
         res.status(400).json({error: error.message})
