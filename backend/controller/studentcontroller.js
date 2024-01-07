@@ -31,7 +31,7 @@ const getStudent = async (req, res) => {
     
     const students = await student.find({}).sort({createdAt: -1})
 
-    res.status(200).json({students})
+    res.status(200).json(students)
 }
 
 module.exports = { addStudent, getStudent }
