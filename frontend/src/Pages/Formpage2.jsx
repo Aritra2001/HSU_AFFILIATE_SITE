@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../hooks/useAuthContext';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Formpage2 = () => {
@@ -12,6 +14,8 @@ const Formpage2 = () => {
   const [dob, setDob] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const navigate = useNavigate()
+  const { dispatch } = useAuthContext()
   var json = ''
 
   const notify = () => {
@@ -69,6 +73,11 @@ const Formpage2 = () => {
         localStorage.removeItem('phone')
         localStorage.removeItem('experience')
         console.log('New Affiliate Added :)')
+        localStorage.setItem('user', JSON.stringify(json))
+        dispatch({type: 'LOGIN', payload: json})
+        setTimeout(() => {
+          navigate('/dashboard')
+        }, 5000)
       } catch(e) {
         throw new Error(e)
       }

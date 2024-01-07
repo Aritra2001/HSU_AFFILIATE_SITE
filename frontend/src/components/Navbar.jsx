@@ -51,6 +51,7 @@ const Navbar = () => {
             <a href="https://hexstaruniverse.com/for-institutions/"><li>For institutions</li></a>
             {user ? <a href='/dashboard'><li>Home</li></a> : <></>}
             <a href="https://hexstaruniverse.com/about-us/"><li>About</li></a>
+            <button className='' onClick={handelLogin}>{user ? <>Logout</> : <>Login</>}</button>
             </ul>
           </div>
         </div>
