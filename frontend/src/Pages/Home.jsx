@@ -10,8 +10,8 @@ const Home = () => {
 
       const response = await fetch('https://hsu-affiliate-site-ph69.vercel.app/api/students/')
 
-      const json = response.json()
-      
+      const json = await response.json()
+
       if (response.ok) {
         setStudents(json)
       }
@@ -22,14 +22,16 @@ const Home = () => {
   },[])
 
   return (
-    <div className='w-full h-screen flex flex-col'>
-        <Navbar />
-        <div className="text-white flex flex-col justify-center items-center text-white text-[46px] font-bold font-['Poppins'] mt-10 max-sm:text-[24px] max-sm:mt-[1.5rem]">
-          Dashboard
-        </div>
-        <div className='text-white'>
-          Data
-        </div>
+    <div className='w-full h-screen flex flex-col sm:gap-2 gap-4'>
+      <Navbar />
+      <div className="text-white text-[24px] font-bold font-['Poppins'] flex items-center justify-center sm:text-[46px]">
+        Dashboard
+      </div>
+      <div className='text-white sm:text-[22px] font-regular font-["Poppins"] flex items-center justify-center'>
+        {students && students.map((student) => (
+          <p>{student.name}</p>
+        ))}
+      </div>
     </div>
   );
 }
