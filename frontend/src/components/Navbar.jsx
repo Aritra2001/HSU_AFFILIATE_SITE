@@ -49,7 +49,7 @@ const Navbar = () => {
             <ul>
             <a href='https://hexstaruniverse.com/all-classes/'><li>All program</li></a>
             <a href="https://hexstaruniverse.com/for-institutions/"><li>For institutions</li></a>
-            {user ? <a href='/dashboard'><li><Dashboard></Dashboard></li></a> : <></>}
+            {user ? <a href='/dashboard'><li>Dashboard</li></a> : <></>}
             <a href="https://hexstaruniverse.com/about-us/"><li>About</li></a>
             <button className='' onClick={handelLogin}>{user ? <>Logout</> : <>Login</>}</button>
             </ul>
