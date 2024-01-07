@@ -32,7 +32,7 @@ const Navbar = () => {
         <ul className='flex-row items-center hidden col-span-3 capitalize space-x-7 md:flex'>
             <a href='https://hexstaruniverse.com/all-classes/'><li>all program</li></a>
             <a href="https://hexstaruniverse.com/for-institutions/"><li>For institutions</li></a>
-            {user ? <a href='/dashboard'><li>home</li></a> : <></>}
+            {user ? <a href='/dashboard'><li>dashboard</li></a> : <></>}
             <a href="https://hexstaruniverse.com/about-us/"><li>about</li></a>
         </ul>
         <div className="flex items-center col-span-1 justify-evenly md:justify-center md:gap-5 md:col-span-2">
@@ -49,7 +49,7 @@ const Navbar = () => {
             <ul>
             <a href='https://hexstaruniverse.com/all-classes/'><li>All program</li></a>
             <a href="https://hexstaruniverse.com/for-institutions/"><li>For institutions</li></a>
-            {user ? <a href='/dashboard'><li>Home</li></a> : <></>}
+            {user ? <a href='/dashboard'><li><Dashboard></Dashboard></li></a> : <></>}
             <a href="https://hexstaruniverse.com/about-us/"><li>About</li></a>
             <button className='' onClick={handelLogin}>{user ? <>Logout</> : <>Login</>}</button>
             </ul>
