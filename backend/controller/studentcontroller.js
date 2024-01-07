@@ -16,7 +16,7 @@ const addStudent = async (req, res) => {
         if(ph_no) {
             throw Error('Phone no Alreay Exits!')
         }
-        if(payment === 'No' && amount > 0) {
+        if((payment === 'No' || payment === 'Later') && amount > 0) {
             throw Error('Change payment status to yes to enter an amount!')
         }
 
