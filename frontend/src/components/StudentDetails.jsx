@@ -1,8 +1,23 @@
 import React, { useState } from 'react';
 import { MdDelete } from 'react-icons/md';
+import { ToastContainer, toast } from "react-toastify";
+import { useStudentsContext } from '../hooks/useStudentsContext';
+import 'react-toastify/dist/ReactToastify.css';
 
 const StudentDetails = ({ student }) => {
+  const { dispatch } = useStudentsContext()
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  var json = ''
+
+  const notify = () => {
+    
+    if(json.hasOwnProperty('error') === false) {
+      toast.success(`${json.name} deleted Successfully!`)
+    }
+    else {
+      toast.error(json.error)
+    }
+  }
 
   const handleDelete = () => {
     setDeleteModalOpen(true);
@@ -14,9 +29,16 @@ const StudentDetails = ({ student }) => {
     }
   }
 
-  const confirmDelete = () => {
-    // Perform the delete action here
-    // You can call your delete API or dispatch a delete action, etc.
+  const confirmDelete = async () => {
+    
+    const response = await fetch('https://hsu-affiliate-site-ph69.vercel.app/api/students/' + student._id, {
+      method: 'DELETE'
+    })
+    json = await response.json()
+    notify()
+    if(response.ok) {
+      dispatch({type: 'DELETE_STUDENT', payload: json})
+    }
 
     // Close the modal after the deletion is done
     setDeleteModalOpen(false);
@@ -51,6 +73,7 @@ const StudentDetails = ({ student }) => {
               <button onClick={confirmDelete} className="mr-2 text-red-500">
                 Confirm
               </button>
+              <ToastContainer theme='dark' />
               <button onClick={cancelDelete}>Cancel</button>
             </div>
           </div>

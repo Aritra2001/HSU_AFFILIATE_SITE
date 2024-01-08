@@ -94,8 +94,6 @@ const AddStudents = () => {
                         <option value="null">Select</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
-                        <option value="Later">Later</option>
-                        <option value="Installment">Installment</option>
                     </select>
                 </li>
                 <li className='flex gap-4 items-center'>

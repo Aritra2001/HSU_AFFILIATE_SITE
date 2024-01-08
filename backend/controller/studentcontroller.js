@@ -20,14 +20,11 @@ const addStudent = async (req, res) => {
         if(payment === 'null') {
             throw Error('Select a valid Payment status!')
         }
-        if((payment === 'No' || payment === 'Later') && amount > 0) {
+        if(payment === 'No' && amount > 0) {
             throw Error('Change payment status to yes to enter an amount!')
         }
-        if((payment === 'Yes') && amount < 0) {
+        if(payment === 'Yes' && amount < 0) {
             throw Error('Amount Cannot be zero on Payment status yes!')
-        }
-        if((payment === 'Installment') && (amount < 0 || amount >=2999)) {
-            throw Error('Installment amount has to be in between 0 and 2999!')
         }
         if(amount > 2999) {
             throw Error('Amount cannot be greater that 2999')
