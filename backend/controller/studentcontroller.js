@@ -16,8 +16,14 @@ const addStudent = async (req, res) => {
         if(ph_no) {
             throw Error('Phone no Alreay Exits!')
         }
+        if(payment === 'null') {
+            throw Error('Select a valid Payment status!')
+        }
         if((payment === 'No' || payment === 'Later') && amount > 0) {
             throw Error('Change payment status to yes to enter an amount!')
+        }
+        if(amount > 2999) {
+            throw Error('Amount cannot be greater that 2999')
         }
 
         await student.create({name, email, phone, payment, amount})
@@ -29,7 +35,7 @@ const addStudent = async (req, res) => {
 
 const getStudent = async (req, res) => {
     
-    const students = await student.find({}).sort({createdAt: -1})
+    const students = await student.find({}).sort()
 
     res.status(200).json(students)
 }

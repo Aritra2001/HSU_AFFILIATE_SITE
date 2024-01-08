@@ -30,8 +30,7 @@ select {
   appearance: none;
   background-image: url('./assets/dropdown.svg');
   background-repeat: no-repeat;
-  background-position: 90%; 
-  background-color: #1B1B1B !important;
+  background-position: 90%;
 }
 @media screen and (max-width: 600px) {
   body {
@@ -50,4 +49,24 @@ button:disabled {
   background-color: #8f8f8f;
   color: #1B1B1B;
 }
-
+td{
+  width: 6rem;
+  flex: auto;
+}
+.email {
+  width: 9.3rem;
+  flex: auto;
+}
+.phone {
+  width: 11.5rem;
+  flex: auto;
+}
+label {
+  width: 5rem;
+  color: #848484;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
