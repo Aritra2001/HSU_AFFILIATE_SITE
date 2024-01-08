@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { AuthContextProvider } from './context/AuthContext';
-import { StudentContextProvider } from './context/StudentContext';
+import { StudentsContextProvider } from './context/StudentContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <StudentContextProvider>
+      <StudentsContextProvider>
       <App />
-      </StudentContextProvider>
+      </StudentsContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );

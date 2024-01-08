@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from "react-toastify";
-import { useStudentContext } from '../hooks/useStudentContext';
+import { useStudentsContext } from '../hooks/useStudentsContext';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddStudents = () => {
@@ -12,7 +12,7 @@ const AddStudents = () => {
     const [amount, setAmount] = useState('')
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
-    const { dispatch } = useStudentContext();
+    const { dispatch } = useStudentsContext()
     var json = ''
 
     const notify = () => {
@@ -61,8 +61,8 @@ const AddStudents = () => {
         setPhone('')
         setPayment('')
         setAmount('')
-        dispatch({ type: 'CREATE_STUDENTS', payload: json });
-        console.log('New Student Added!')
+        console.log("New Student Added!")
+        dispatch({type: 'CREATE_STUDENT', payload: json})
     } catch(error) {
         console.log(error)
     }
@@ -95,6 +95,7 @@ const AddStudents = () => {
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                         <option value="Later">Later</option>
+                        <option value="Installment">Installment</option>
                     </select>
                 </li>
                 <li className='flex gap-4 items-center'>

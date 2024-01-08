@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
-import { useStudentContext } from '../hooks/useStudentContext';
+import { useStudentsContext } from '../hooks/useStudentsContext';
 import StudentDetails from '../components/StudentDetails';
 import AddStudents from '../components/AddStudents';
 
 const Home = () => {
-  const { students, dispatch } = useStudentContext();
+  const { students, dispatch } = useStudentsContext()
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -14,28 +14,28 @@ const Home = () => {
       const json = await response.json();
 
       if (response.ok) {
-        dispatch({ type: 'SET_STUDENTS', payload: json });
+        dispatch({type: 'SET_STUDENTS', payload: json})
       }
 
       setLoading(false); // Set loading to false after data is fetched
     };
 
     fetchStudentData();
-  }, []);
+  }, [dispatch]);
 
   return (
-    <div className='w-full h-screen flex flex-col'>
+    <div className='w-full h-screen flex flex-col gap-10'>
       <Navbar />
       <div className="text-white text-[24px] font-bold font-['Poppins'] flex items-center justify-center sm:text-[46px] sm:mt-[5vh] mt-5">
         Dashboard
       </div>
       <div className='flex items-center justify-center gap-10'>
-        <div className='w-[900px] h-[533px] bg-stone-900 rounded-[15px] border border-white backdrop-blur-[22px] mt-[2rem]'>
+        <div className='w-[900px] h-[533px] bg-stone-900 rounded-[15px] border border-white backdrop-blur-[22px] mt-[2rem] overflow-auto overflow-x-hidden'>
           <div className="text-white text-xl font-semibold font-['Poppins'] mt-[5vh] ml-[4rem]">Student details</div>
           {loading ? (
             // Show loading screen
             <div className="flex items-center justify-center h-full">
-              <p className="text-white text-[15px] font-['Poppins']">Loading...</p>
+              <p className='text-white text-[15px] font-["Poppins"]'>Loading...</p>
             </div>
           ) : (
             // Show student details table

@@ -1,30 +1,31 @@
-import { createContext, useReducer } from 'react'
+import { createContext, useReducer } from "react";
 
-export const StudentContext = createContext()
+export const StudentsContext = createContext()
 
-export const studentReducer = (state, action) => {
-  switch (action.type) {
-    case 'SET_STUDENTS':
-      return { 
-        students: action.payload 
-      }
-    case 'CREATE_STUDENTS':
-      return { 
-        students: [action.payload, ...state.students] 
-      }
-    default:
-      return state
-  }
+export const studentsReducer = (state, action) => {
+    switch (action.type) {
+        case 'SET_STUDENTS':
+            return {
+                students: action.payload
+            }
+        case 'CREATE_STUDENT':
+            return {
+                students: [action.payload, ...state.students]
+            }
+        default:
+            return state
+    }
 }
 
-export const StudentContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(studentReducer, { 
-    students: null
-  })
-  
-  return (
-    <StudentContext.Provider value={{ ...state, dispatch }}>
-        {children}
-    </StudentContext.Provider>
-  )
+export const StudentsContextProvider = ({ children }) => {
+
+    const [state, dispatch] = useReducer(studentsReducer, {
+        students: null
+    })
+
+    return (
+        <StudentsContext.Provider value={{...state, dispatch}}>
+            {children}
+        </StudentsContext.Provider>
+    )
 }
