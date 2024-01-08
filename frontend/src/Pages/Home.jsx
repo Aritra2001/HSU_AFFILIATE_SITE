@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import { useStudentsContext } from '../hooks/useStudentsContext';
 import StudentDetails from '../components/StudentDetails';
 import AddStudents from '../components/AddStudents';
+import RemainingDaysCounter from '../components/RemainingDaysCounter';
 
 const Home = () => {
   const { students, dispatch } = useStudentsContext()
@@ -24,7 +25,7 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <div className='w-full h-screen flex flex-col gap-10'>
+    <div className='w-full h-fit flex flex-col gap-10 justify-center items-center'>
       <Navbar />
       <div className="text-white text-[24px] font-bold font-['Poppins'] flex items-center justify-center sm:text-[46px] sm:mt-[5vh] mt-5">
         Dashboard
@@ -58,6 +59,24 @@ const Home = () => {
           )}
         </div>
         <AddStudents />
+      </div>
+      <div className='w-[87%] h-[150px] flex bg-violet-600 rounded-2xl mb-10'>
+        <div>
+          <div className="text-white text-xl font-semibold font-['Poppins'] justify-top p-8">
+            Space Tech Training & Internship
+          </div>
+          <div className='flex flex-row gap-5'>
+          <p className="text-zinc-300 text-base font-medium font-['Poppins'] ml-8">
+            Starts In
+          </p>
+          <div className="w-[68px] h-[25px] bg-indigo-900 rounded-[5px] border border-zinc-300 items-center flex justify-center">
+            {<RemainingDaysCounter targetDate="2024-01-29" />}
+          </div>
+          <div class="w-[85px] h-[24px] bg-zinc-200 rounded-md border-black text-black text-[10px] font-bold font-['Poppins'] items-center flex justify-center">
+          <a href="https://hexstaruniverse.com/courses/space-tech-training-and-internship-program-2/">Visit the page</a>
+          </div>
+          </div>
+        </div>
       </div>
     </div>
   );
