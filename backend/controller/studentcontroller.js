@@ -1,4 +1,5 @@
 const student = require('../modules/studentModule')
+const mongoose = require('mongoose')
 
 const addStudent = async (req, res) => {
 
@@ -46,4 +47,22 @@ const getStudent = async (req, res) => {
     res.status(200).json(students)
 }
 
-module.exports = { addStudent, getStudent }
+const deleteStudent = async (req, res) => {
+    const { id } = req.params
+  
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({error: 'No such Student'})
+    }
+  
+    const students = await student.findOneAndDelete({_id: id})
+  
+    if(!students) {
+      return res.status(400).json({error: 'No such workout'})
+    }
+  
+    res.status(200).json(students)
+  }
+  
+    
+
+module.exports = { addStudent, getStudent, deleteStudent }
