@@ -35,7 +35,7 @@ const addStudent = async (req, res) => {
 
 const getStudent = async (req, res) => {
     
-    const students = await student.find({}).sort()
+    const students = await student.find({}).sort({createdAt: -1})
 
     res.status(200).json(students)
 }
