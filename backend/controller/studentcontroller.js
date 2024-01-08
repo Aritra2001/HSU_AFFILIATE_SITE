@@ -32,8 +32,8 @@ const addStudent = async (req, res) => {
             throw Error('Amount cannot be greater that 2999')
         }
 
-        const student = await student.create({name, email, phone, payment, amount})
-        res.status(200).json(student)
+        const students = await student.create({name, email, phone, payment, amount})
+        res.status(200).json(students)
     } catch (error) {
         res.status(400).json({error: error.message})
     }
