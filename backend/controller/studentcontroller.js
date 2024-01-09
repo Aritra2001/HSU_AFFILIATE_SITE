@@ -42,8 +42,10 @@ const addStudent = async (req, res) => {
 }
 
 const getStudent = async (req, res) => {
+
+    const user_id = req.user._id
     
-    const students = await student.find({}).sort({createdAt: -1})
+    const students = await student.find({ user_id }).sort({createdAt: -1})
 
     res.status(200).json(students)
 }

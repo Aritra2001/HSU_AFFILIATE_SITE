@@ -85,7 +85,7 @@ const Login = () => {
         </div>
         <ToastContainer theme="dark"/>
         <button className='px-3 capitalize text-base bg-[#6637ED] h-8 rounded-md md:text-lg md:h-10' onClick={submitHandler} disabled={loading}>{loading ? <>Loading...</> : <>Login</>}</button>
-          <p className='text-xs text-center md:text-sm'>Create a affiliate account? <span className='underline cursor-pointer'>Become Affiliate</span></p>
+          <p className='text-xs text-center md:text-sm'>Create a affiliate account? <a href="/"><span className='underline cursor-pointer'>Become Affiliate</span></a></p>
       </div>
     </div>
   )

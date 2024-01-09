@@ -55,11 +55,11 @@ td{
   overflow: auto;
 }
 .email {
-  width: 9.3rem;
+  width: 10rem;
   flex: auto;
 }
 .phone {
-  width: 11.5rem;
+  width: 9.5rem;
   flex: auto;
 }
 label {
@@ -70,4 +70,7 @@ label {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+}
+::-webkit-scrollbar {
+  background: transparent;
 }

@@ -62,8 +62,8 @@ const StudentDetails = ({ student }) => {
             <td className="capitalize">{student.name}</td>
             <td className="email">{student.email}</td>
             <td className="phone">{student.phone}</td>
-            <td className="">{student.payment}</td>
-            <td className="-ml-[6rem] cursor-pointer" onClick={handleDelete}>
+            <td className="ml-">{student.payment}</td>
+            <td className="-ml-[4.8rem] cursor-pointer" onClick={handleDelete}>
               <MdDelete size={20} />
             </td>
           </tr>
