@@ -30,7 +30,7 @@ const Home = () => {
     if(user) {
       fetchStudentData();
     }
-  }, [dispatch]);
+  }, [dispatch, user]);
 
   return (
     <div className='w-full h-fit flex flex-col gap-8 justify-center items-center'>
