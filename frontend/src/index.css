@@ -56,6 +56,7 @@ td{
 .email {
   width: 9.3rem;
   flex: auto;
+  overflow: auto;
 }
 .phone {
   width: 11.5rem;

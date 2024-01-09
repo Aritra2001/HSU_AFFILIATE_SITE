@@ -64,7 +64,7 @@ const StudentDetails = ({ student }) => {
         <tbody className="grid grid-rows-1">
           <tr className="grid grid-flow-col gap-20">
             <td className="capitalize">{student.name}</td>
-            <td className="email">{student.email}</td>
+            <td className="email flex">{student.email}</td>
             <td className="phone">{student.phone}</td>
             <td className="">{student.payment}</td>
             <td className="-ml-[6rem] cursor-pointer" onClick={handleDelete}>
