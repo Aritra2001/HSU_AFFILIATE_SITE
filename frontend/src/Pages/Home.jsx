@@ -4,14 +4,20 @@ import { useStudentsContext } from '../hooks/useStudentsContext';
 import StudentDetails from '../components/StudentDetails';
 import AddStudents from '../components/AddStudents';
 import RemainingDaysCounter from '../components/RemainingDaysCounter';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const Home = () => {
   const { students, dispatch } = useStudentsContext()
   const [loading, setLoading] = useState(true);
+  const { user } = useAuthContext()
 
   useEffect(() => {
     const fetchStudentData = async () => {
-      const response = await fetch('https://hsu-affiliate-site-ph69.vercel.app/api/students/');
+      const response = await fetch('https://hsu-affiliate-site-ph69.vercel.app/api/students/',{
+        headers: {
+          'Authorization': `Bearer ${user.token}`
+        }
+      });
       const json = await response.json();
 
       if (response.ok) {
@@ -21,17 +27,19 @@ const Home = () => {
       setLoading(false); // Set loading to false after data is fetched
     };
 
-    fetchStudentData();
+    if(user) {
+      fetchStudentData();
+    }
   }, [dispatch]);
 
   return (
-    <div className='w-full h-fit flex flex-col gap-10 justify-center items-center'>
+    <div className='w-full h-fit flex flex-col gap-8 justify-center items-center'>
       <Navbar />
-      <div className="text-white text-[24px] font-bold font-['Poppins'] flex items-center justify-center sm:text-[46px] sm:mt-[5vh] mt-5">
+      <div className="text-white text-[24px] font-bold font-['Poppins'] flex items-center justify-center sm:text-[46px] sm:mt-[2vh] mt-2">
         Dashboard
       </div>
-      <div className='flex items-center justify-center gap-10'>
-        <div className='w-[900px] h-[533px] bg-stone-900 rounded-[15px] border border-white backdrop-blur-[22px] mt-[2rem] overflow-auto overflow-x-hidden'>
+      <div className='flex items-center justify-center gap-5'>
+        <div className='w-[900px] h-[533px] bg-stone-900 rounded-[15px] border border-white backdrop-blur-[22px] overflow-auto overflow-x-hidden'>
           <div className="text-white text-xl font-semibold font-['Poppins'] mt-[5vh] ml-[4rem]">Student details</div>
           {loading ? (
             // Show loading screen

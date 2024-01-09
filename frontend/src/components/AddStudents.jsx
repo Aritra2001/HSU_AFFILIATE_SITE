@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from "react-toastify";
 import { useStudentsContext } from '../hooks/useStudentsContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddStudents = () => {
@@ -13,6 +14,7 @@ const AddStudents = () => {
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
     const { dispatch } = useStudentsContext()
+    const { user } = useAuthContext()
     var json = ''
 
     const notify = () => {
@@ -28,6 +30,11 @@ const AddStudents = () => {
     const handelClick = async (e) => {
         e.preventDefault()
 
+        if(!user) {
+          setError('You must be Logged in')
+          return
+        }
+
         const student = { name, email, phone, payment, amount }
 
         setLoading(true)
@@ -36,7 +43,8 @@ const AddStudents = () => {
     method: 'POST',
       body: JSON.stringify(student),
       headers : {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.token}`
       }
     })
 
@@ -70,7 +78,7 @@ const AddStudents = () => {
 }
 
   return (
-    <div className='w-[386px] h-[533px] relative bg-zinc-900 rounded-[20px] border border-white mt-[2rem] flex justify-center'>
+    <div className='w-[386px] h-[533px] relative bg-zinc-900 rounded-[20px] border border-white flex justify-center'>
         <div className='flex gap-8 flex-col items-center'>
             <p className="w-32 text-white text-xl font-semibold font-['Poppins'] mt-[2rem]">
                 Add Student

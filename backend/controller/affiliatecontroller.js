@@ -2,6 +2,13 @@ const affiliates = require('../modules/affiliateModule')
 const validator = require('validator')
 const bcrypt = require('bcrypt')
 const { Resend } = require("resend");
+const jwt = require('jsonwebtoken')
+
+//create json web token
+const createToken = (_id) => {
+    return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' })
+  }
+  
 
 // Send an email:
 const instanceResend = new Resend(process.env.RESEND_API_KEY);
@@ -108,7 +115,9 @@ const affiliate_post = async (req, res) => {
             </html>`
           });
 
-        res.status(200).json({message: 'New Affiliate Added'})
+        const token = createToken(name._id)
+
+        res.status(200).json({email, token})
     } catch (error) {
         res.status(400).json({error: error.message})
     }
@@ -136,7 +145,9 @@ const login = async (req, res) => {
             throw Error('Incorrect Password')
         }
 
-        res.status(200).json({mail})
+        const token = createToken(mail._id)
+
+        res.status(200).json({email, token})
     } catch(error) {
         res.status(400).json({error: error.message})
     }
