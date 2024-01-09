@@ -13,11 +13,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchStudentData = async () => {
-      const response = await fetch('https://hsu-affiliate-site-ph69.vercel.app/api/students/',{
-        headers: {
-          'Authorization': `Bearer ${user.token}`
-        }
-      });
+      const response = await fetch('http://localhost:9999/api/students/');
       const json = await response.json();
 
       if (response.ok) {
