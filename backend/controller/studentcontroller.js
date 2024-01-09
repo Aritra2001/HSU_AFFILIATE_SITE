@@ -20,17 +20,18 @@ const addStudent = async (req, res) => {
         if(payment === 'null') {
             throw Error('Select a valid Payment status!')
         }
-        if(payment === 'No' && amount > 0) {
+        if(payment === 'No' && amount !== 0) {
             throw Error('Change payment status to yes to enter an amount!')
         }
-        if(payment === 'Yes' && amount < 0) {
+        if(payment === 'Yes' && amount !== 2999) {
             throw Error('Amount Cannot be zero on Payment status yes!')
         }
         if(amount > 2999) {
             throw Error('Amount cannot be greater that 2999')
         }
 
-        const students = await student.create({name, email, phone, payment, amount})
+        const user_id = req.user._id
+        const students = await student.create({name, email, phone, payment, amount, user_id})
         res.status(200).json(students)
     } catch (error) {
         res.status(400).json({error: error.message})
