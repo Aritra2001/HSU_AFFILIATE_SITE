@@ -1,5 +1,5 @@
 const express = require('express')
-const { addStudent, getStudent, deleteStudent } = require('../controller/studentcontroller')
+const { addStudent, getStudent, deleteStudent, userStudent } = require('../controller/studentcontroller')
 const requireAuth = require('../middleware/requireAuth')
 
 
@@ -10,6 +10,8 @@ router.use(requireAuth)
 
 //routes
 router.post('/', addStudent)
+
+router.post('/money', userStudent)
 
 router.get('/', getStudent)
 

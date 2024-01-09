@@ -12,6 +12,8 @@ const Home = () => {
   const name = JSON.parse(localStorage.getItem('user'))
   const { students, dispatch } = useStudentsContext()
   const [loading, setLoading] = useState(true);
+  var [payment, setPayment] = useState('')
+  const [calculatedRupee, setCalculatedRupee] = useState(null);
   const { user } = useAuthContext()
 
   useEffect(() => {
@@ -34,6 +36,41 @@ const Home = () => {
       fetchStudentData();
     }
   }, [dispatch, user]);
+
+  const handelCount = async (e) => {
+    e.preventDefault()
+
+    const money = { payment }
+
+    try {
+      const response = await fetch('https://hsu-affiliate-site-ph69.vercel.app/api/students/money', {
+        method: 'POST',
+        body: JSON.stringify(money),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.token}`,
+        },
+      });
+
+      const rupeeData = await response.json();
+
+      if (response.ok) {
+        setPayment('');
+
+        // Assuming rupeeData is an array, you can calculate the length
+        const rupeeLength = rupeeData.length;
+
+        // Multiply 500 with the length and update the state
+        setCalculatedRupee(rupeeLength * 500);
+      } else {
+        // Handle the case where the response is not okay
+        console.error('Error:', rupeeData.error);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+
+  }
 
   return (
     <div className='w-full h-fit flex flex-col gap-8 justify-center items-center'>
@@ -96,8 +133,8 @@ const Home = () => {
          <div className='absolute'>
          <p className='flex ml-[10rem] mb-[3rem]'>{name.name}</p>
          <div className='flex ml-[10.5rem]'>
-         <input type="radio" value="Paid" />
-         <p className='flex ml-2'>₹1000</p>
+         <input type="radio" value={payment = 'Paid'} onClick={handelCount} onChange={(e) => setPayment(e.target.value)}></input>
+         <p className='flex ml-2'>₹{calculatedRupee !== null ? calculatedRupee : 0}</p>
          </div>
          </div>
         </div>

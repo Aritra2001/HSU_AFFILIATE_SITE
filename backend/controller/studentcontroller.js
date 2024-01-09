@@ -50,6 +50,16 @@ const getStudent = async (req, res) => {
     res.status(200).json(students)
 }
 
+const userStudent = async (req, res) => {
+
+    const { payment } = req.body
+    const user_id = req.user._id
+
+    const students = await student.find({ payment, user_id }).sort({createdAt: -1})
+
+    res.status(200).json(students)
+}
+
 const deleteStudent = async (req, res) => {
     const { id } = req.params
   
@@ -68,4 +78,4 @@ const deleteStudent = async (req, res) => {
   
     
 
-module.exports = { addStudent, getStudent, deleteStudent }
+module.exports = { addStudent, getStudent, deleteStudent, userStudent }
