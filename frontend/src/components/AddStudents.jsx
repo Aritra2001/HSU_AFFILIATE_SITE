@@ -10,7 +10,7 @@ const AddStudents = () => {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [payment, setPayment] = useState('')
-    const [amount, setAmount] = useState('')
+    var [amount, setAmount] = useState('')
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
     const { dispatch } = useStudentsContext()
@@ -100,8 +100,9 @@ const AddStudents = () => {
                     <label htmlFor="">Payment</label>
                     <select className='w-[196px] h-[39px] opacity-70 bg-stone-950 rounded-[10px] border border-zinc-300 indent-4 text-white' value={payment} onChange={(e) => setPayment(e.target.value)} style={{ color: payment ? "#fff" : "#696969" }}>
                         <option value="null">Select</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
+                        <option value="Paid">Paid</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Partial">Partial</option>
                     </select>
                 </li>
                 <li className='flex gap-4 items-center'>
