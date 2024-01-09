@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from "react-toastify";
 import { useStudentsContext } from '../hooks/useStudentsContext';
-import { useAuthContext } from '../hooks/useAuthContext';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddStudents = () => {
@@ -14,7 +13,6 @@ const AddStudents = () => {
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
     const { dispatch } = useStudentsContext()
-    const { user } = useAuthContext()
     var json = ''
 
     const notify = () => {
@@ -30,11 +28,6 @@ const AddStudents = () => {
     const handelClick = async (e) => {
         e.preventDefault()
 
-        if(!user) {
-          setError('You must be Logged in')
-          return
-        }
-
         const student = { name, email, phone, payment, amount }
 
         setLoading(true)
@@ -44,7 +37,6 @@ const AddStudents = () => {
       body: JSON.stringify(student),
       headers : {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${user.token}`
       }
     })
 

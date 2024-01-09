@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { MdDelete } from 'react-icons/md';
 import { ToastContainer, toast } from "react-toastify";
 import { useStudentsContext } from '../hooks/useStudentsContext';
-import { useAuthContext } from '../hooks/useAuthContext';
 import 'react-toastify/dist/ReactToastify.css';
 
 const StudentDetails = ({ student }) => {
   const { dispatch } = useStudentsContext()
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
-  const { user } = useAuthContext()
   var json = ''
 
   const notify = () => {
@@ -33,15 +31,8 @@ const StudentDetails = ({ student }) => {
 
   const confirmDelete = async () => {
 
-    if(!user) {
-      return
-    }
-    
     const response = await fetch('https://hsu-affiliate-site-ph69.vercel.app/api/students/' + student._id, {
       method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${user.token}`
-      }
     })
     json = await response.json()
     notify()
