@@ -52,11 +52,11 @@ button:disabled {
 td{
   width: 6rem;
   flex: auto;
+  overflow: auto;
 }
 .email {
   width: 9.3rem;
   flex: auto;
-  overflow: auto;
 }
 .phone {
   width: 11.5rem;

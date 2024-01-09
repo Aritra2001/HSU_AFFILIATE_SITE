@@ -1,5 +1,6 @@
 const student = require('../modules/studentModule')
 const mongoose = require('mongoose')
+const validator = require('validator')
 
 const addStudent = async (req, res) => {
 
@@ -12,6 +13,9 @@ const addStudent = async (req, res) => {
         const mail = await student.findOne({ email })
         if(mail) {
             throw Error('Email Already Exits!')
+        }
+        if(!validator.isEmail(email)) {
+            throw Error('Email is not valid!')
         }
         const ph_no = await student.findOne({ phone })
         if(ph_no) {
@@ -26,7 +30,7 @@ const addStudent = async (req, res) => {
         if(payment === 'Paid' && amount !== '2999') {
             throw Error('Payment has to be 2999 for Status Paid!')
         }
-        if(payment === 'Pending' && amount !== 0) {
+        if(payment === 'Pending' && amount !== '0') {
             throw Error('Payment has to be 0 for Status Pending!')
         }
         const user_id = req.user._id
