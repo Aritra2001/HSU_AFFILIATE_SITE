@@ -4,14 +4,20 @@ import { useStudentsContext } from '../hooks/useStudentsContext';
 import StudentDetails from '../components/StudentDetails';
 import AddStudents from '../components/AddStudents';
 import RemainingDaysCounter from '../components/RemainingDaysCounter';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const Home = () => {
   const { students, dispatch } = useStudentsContext()
   const [loading, setLoading] = useState(true);
+  const { user } = useAuthContext()
 
   useEffect(() => {
     const fetchStudentData = async () => {
-      const response = await fetch('https://hsu-affiliate-site-ph69.vercel.app/api/students/');
+      const response = await fetch('https://hsu-affiliate-site-ph69.vercel.app/api/students/',{
+        headers: {
+          'Authorization': `Bearer ${user.token}`
+        }
+      });
       const json = await response.json();
 
       if (response.ok) {
@@ -21,10 +27,10 @@ const Home = () => {
       setLoading(false); // Set loading to false after data is fetched
     };
 
-    
+    if(user) {
       fetchStudentData();
-    
-  }, [dispatch]);
+    }
+  }, [dispatch, user]);
 
   return (
     <div className='w-full h-fit flex flex-col gap-8 justify-center items-center'>
