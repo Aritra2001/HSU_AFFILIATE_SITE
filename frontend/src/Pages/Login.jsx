@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
 
   const [email, setEmail] = useState('')
-  const [dob, setDob] = useState('')
+  const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -18,7 +18,7 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault()
 
-    const user = {email, dob}
+    const user = {email, password}
     setLoading(true)
     const response = await fetch('https://hsu-affiliate-site-ph69.vercel.app/api/login', {
 
@@ -47,7 +47,7 @@ const Login = () => {
         dispatch({type: 'LOGIN', payload: json})
         setError(null)
         setEmail('')
-        setDob('')
+        setPassword('')
         console.log('Login Successfull!')
       } catch(e) {
         throw new Error(e)
@@ -75,7 +75,7 @@ const Login = () => {
         
         <input type="email" className='p-2 bg-transparent border rounded-md indent-[1rem]' placeholder='Email' onChange={(e)=>setEmail(e.target.value)} value={email}/>
         <div className='container relative w-full'>  
-          <input type={showPassword ? 'text' : 'password'} className='w-full p-2 bg-transparent border rounded-md password-input-wrapper indent-[1rem]' placeholder='Date of Birth' onChange={(e)=>setDob(e.target.value)} value={dob}/>
+          <input type={showPassword ? 'text' : 'password'} className='w-full p-2 bg-transparent border rounded-md password-input-wrapper indent-[1rem]' placeholder='Date of Birth' onChange={(e)=>setPassword(e.target.value)} value={password}/>
           <button
             className="absolute inset-y-0 right-0 flex items-center px-4 text-white"
             onClick={togglePasswordVisibility}

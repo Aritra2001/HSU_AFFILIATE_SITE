@@ -22,6 +22,7 @@ const affiliate_post = async (req, res) => {
     var  voter_reg =  /^[A-Z]{3}[0-9]{7}$/.test(id_proof)
     var pan_reg = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(id_proof)
     var date_reg = /^(\d{1,2})-(\d{1,2})-(\d{4})$/.test(dob)
+    var pass = 'STTIP' + phone.toString().substring(0,4)
 
     const date = new Date(dob)
 
@@ -80,9 +81,9 @@ const affiliate_post = async (req, res) => {
         //hashing
         const salt = await bcrypt.genSalt(10)
         const hash_id = await bcrypt.hash(id_proof, salt)
-        const hash_dob = await bcrypt.hash(dob, salt)
+        const hash_pass = await bcrypt.hash(pass, salt)
 
-        await affiliates.create({ name, email, phone, experience, id_type, id_proof : hash_id, expectation, institution, dob : hash_dob})
+        await affiliates.create({ name, email, phone, experience, id_type, id_proof : hash_id, expectation, institution, dob, password: hash_pass})
 
         await instanceResend.emails.send({
             from: 'network@hexstaruniverse.com',
@@ -103,7 +104,7 @@ const affiliate_post = async (req, res) => {
             <p><span>Hi ${name},</span></p>
             <p>Thanks for taking the leap and joining us in the Hex-Star Universe affiliate fam!  We're thrilled to have you on board and can't wait to see what amazing things you'll do with our brand.<br/></p>
             <p>Keep your eyes peeled for a follow-up email (or maybe even a call!) in the next few days. We'll be in touch with all the juicy details about the program, exclusive resources, and how you can connect with other awesome affiliates.<br/></p>
-            <p>In the meantime, feel free to browse our content, get familiar with our products, and let your creative juices flow. We're all about building a community of passionate advocates, and you're officially part of it!<br/></p>
+            <p>In the meantime, feel free to browse our content, get familiar with our products, and let your creative juices flow. Use <b>${pass}</b> as your login password!<br/></p>
             <p><span>Excited to have you with us,</span><br/></p>
             <p><span>The Hex-Star Universe Affiliate Team</span></P>
             </td>
@@ -125,11 +126,11 @@ const affiliate_post = async (req, res) => {
 
 const login = async (req, res) => {
 
-    const {email, dob} = req.body
+    const {email, password} = req.body
 
     try {
 
-        if(!email || !dob) {
+        if(!email || !password) {
             throw Error('Mandetory fields must be filled!')
         }
     
@@ -139,7 +140,7 @@ const login = async (req, res) => {
             throw Error('Incorrect Email')
         }
     
-        const match = await bcrypt.compare(dob, mail.dob)
+        const match = await bcrypt.compare(password, mail.password)
     
         if(!match) {
             throw Error('Incorrect Password')
