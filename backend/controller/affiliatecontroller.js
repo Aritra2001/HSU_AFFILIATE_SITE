@@ -148,7 +148,7 @@ const login = async (req, res) => {
 
         const token = createToken(mail._id)
 
-        res.status(200).json({email, token})
+        res.status(200).json({email, name: mail.name, token})
     } catch(error) {
         res.status(400).json({error: error.message})
     }
