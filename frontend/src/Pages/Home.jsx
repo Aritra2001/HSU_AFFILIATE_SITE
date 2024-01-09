@@ -5,8 +5,11 @@ import StudentDetails from '../components/StudentDetails';
 import AddStudents from '../components/AddStudents';
 import RemainingDaysCounter from '../components/RemainingDaysCounter';
 import { useAuthContext } from '../hooks/useAuthContext';
+import Avatar from '../assets/Group.svg'
 
 const Home = () => {
+
+  const name = JSON.parse(localStorage.getItem('user'))
   const { students, dispatch } = useStudentsContext()
   const [loading, setLoading] = useState(true);
   const { user } = useAuthContext()
@@ -68,12 +71,12 @@ const Home = () => {
         </div>
         <AddStudents />
       </div>
-      <div className='w-[87%] h-[150px] flex bg-violet-600 rounded-2xl mb-10'>
+      <div className='w-[87%] h-[237px] flex bg-violet-600 rounded-2xl mb-10'>
         <div>
-          <div className="text-white text-xl font-semibold font-['Poppins'] justify-top p-8">
+          <div className="text-white text-2xl font-semibold font-['Poppins'] justify-top p-1 mt-20 ml-7">
             Space Tech Training & Internship
           </div>
-          <div className='flex flex-row gap-5'>
+          <div className='flex flex-row gap-5 mt-[2vh]'>
           <p className="text-zinc-300 text-base font-medium font-['Poppins'] ml-8">
             Starts In
           </p>
@@ -84,6 +87,19 @@ const Home = () => {
           <a href="https://hexstaruniverse.com/courses/space-tech-training-and-internship-program-2/">Visit the page</a>
           </div>
           </div>
+        </div>
+        <div className='flex flex-col items-center ml-[34rem] bg-stone-900 w-[20rem] h-[30vh] mt-[2vh] justify-center rounded-2xl border border-white text-white text-[15px] font-medium font-["Poppins"] overflow-hidden'>
+         <div className='flex mr-[5rem] flex-col'>
+          <img src={Avatar} alt="avatar" className='mb-3 mr-20' width={60}/>
+          <p className='text-violet-600 -mb-1'>Payment</p>
+         </div>
+         <div className='absolute'>
+         <p className='flex ml-[10rem] mb-[3rem]'>{name.name}</p>
+         <div className='flex ml-[10.5rem]'>
+         <input type="radio" value="Paid" />
+         <p className='flex ml-2'>₹1000</p>
+         </div>
+         </div>
         </div>
       </div>
     </div>

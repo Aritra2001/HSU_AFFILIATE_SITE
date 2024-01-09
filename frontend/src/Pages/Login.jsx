@@ -75,7 +75,7 @@ const Login = () => {
         
         <input type="email" className='p-2 bg-transparent border rounded-md indent-[1rem]' placeholder='Email' onChange={(e)=>setEmail(e.target.value)} value={email}/>
         <div className='container relative w-full'>  
-          <input type={showPassword ? 'text' : 'password'} className='w-full p-2 bg-transparent border rounded-md password-input-wrapper indent-[1rem]' placeholder='Date of Birth' onChange={(e)=>setPassword(e.target.value)} value={password}/>
+          <input type={showPassword ? 'text' : 'password'} className='w-full p-2 bg-transparent border rounded-md password-input-wrapper indent-[1rem]' placeholder='Password' onChange={(e)=>setPassword(e.target.value)} value={password}/>
           <button
             className="absolute inset-y-0 right-0 flex items-center px-4 text-white"
             onClick={togglePasswordVisibility}
