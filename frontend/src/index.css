@@ -55,11 +55,11 @@ td{
   overflow: auto;
 }
 .email {
-  width: 10rem;
+  width: 9.8rem;
   flex: auto;
 }
 .phone {
-  width: 9.5rem;
+  width: 9.7rem;
   flex: auto;
 }
 label {
