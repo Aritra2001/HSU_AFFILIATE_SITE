@@ -38,7 +38,7 @@ const AddStudents = () => {
         const student = { name, email, phone, payment, amount }
 
         setLoading(true)
-        const response = await fetch('http://localhost:9999/api/students/', {
+        const response = await fetch('https://hsu-affiliate-site-ph69.vercel.app/api/students/', {
 
           method: 'POST',
           body: JSON.stringify(student),
