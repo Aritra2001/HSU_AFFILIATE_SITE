@@ -4,8 +4,9 @@ import { ToastContainer, toast } from "react-toastify";
 import { useStudentsContext } from '../hooks/useStudentsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaArrowAltCircleDown } from "react-icons/fa";
 
-const StudentDetails = ({ student }) => {
+const StudentDetails = ({ student, isLastStudent, students }) => {
   const { dispatch } = useStudentsContext()
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const { user } = useAuthContext()
@@ -54,6 +55,27 @@ const StudentDetails = ({ student }) => {
     setDeleteModalOpen(false);
   };
 
+  const downloadTable = () => {
+    // Initialize CSV content with header
+    let csvContent = 'Name,Email,Phone,Payment\n';
+  
+    // Append each student's data to the CSV content
+    students.forEach((student) => {
+      csvContent += `${student.name},${student.email},${student.phone},${student.payment}\n`;
+    });
+  
+    // Create and trigger the download
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'student_data.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
+
   return (
     <div onClick={handelDivClick}>
       <table className="text-white text-[15px] font-medium font-['Poppins'] ml-[4rem] flex mt-[2vh]">
@@ -69,6 +91,7 @@ const StudentDetails = ({ student }) => {
           </tr>
         </tbody>
       </table>
+      {isLastStudent && (<button className=' w-[7rem] text-white bg-violet-600 p-2 rounded-xl mt-7 ml-[24rem] mt-[10vh] flex justify-center items-center gap-2' onClick={downloadTable}><FaArrowAltCircleDown size={20}/>Excel</button>)}
 
       {isDeleteModalOpen && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 font-['Poppins']">
@@ -85,7 +108,8 @@ const StudentDetails = ({ student }) => {
         </div>
       )}
 
-      <div className="w-[770px] h-[0px] border border-neutral-600 ml-[4rem] flex mt-1"></div>
+      
+      {!isLastStudent && (<div className="w-[770px] h-[0px] border border-neutral-600 ml-[4rem] flex mt-1"></div>)}
     </div>
   );
 };

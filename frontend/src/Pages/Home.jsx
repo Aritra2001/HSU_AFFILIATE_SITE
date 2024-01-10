@@ -76,6 +76,7 @@ const Home = () => {
   
   })
 
+
   return (
     <div className='w-full h-fit flex flex-col gap-8 justify-center items-center'>
       <Navbar />
@@ -83,7 +84,7 @@ const Home = () => {
         Dashboard
       </div>
       <div className='flex items-center justify-center gap-5'>
-        <div className='w-[900px] h-[533px] bg-stone-900 rounded-[15px] border border-white backdrop-blur-[22px] overflow-auto overflow-x-hidden'>
+        <div className='w-[900px] h-[533px] bg-stone-900 rounded-[15px] border border-white backdrop-blur-[22px] overflow-auto overflow-x-hidden'>   
           <div className="text-white text-xl font-semibold font-['Poppins'] mt-[5vh] ml-[4rem]">Student details</div>
           {loading ? (
             // Show loading screen
@@ -93,7 +94,7 @@ const Home = () => {
           ) : (
             // Show student details table
             <>
-              <table className="text-violet-600 text-[15px] font-medium font-['Poppins'] ml-[4rem] mt-[3vh] flex">
+              <table className="text-violet-600 text-[15px] font-medium font-['Poppins'] ml-[4rem] mt-[5vh] flex">
                 <thead>
                   <tr className='gap-40 flex'>
                     <th className=''>Name</th>
@@ -104,8 +105,8 @@ const Home = () => {
                 </thead>
               </table>
               <div className="w-[770px] h-[0px] border border-violet-600 ml-[4rem] flex mt-1"></div>
-              {students && students.map((student) => (
-                <StudentDetails key={student._id} student={student} />
+              {students && students.map((student, index, array) => (
+                <StudentDetails key={student._id} student={student} isLastStudent={index === array.length - 1} students={students} />
               ))}
             </>
           )}
