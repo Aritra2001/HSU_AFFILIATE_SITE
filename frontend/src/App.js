@@ -28,7 +28,7 @@ function App() {
     <Routes>
       <Route 
       path="/"
-      element={<Heropage />}
+      element={user ? <Home /> : <Heropage />}
       />
       <Route
       path="/login"
