@@ -25,7 +25,7 @@ const RemainingDaysCounter = ({ targetDate }) => {
   }, [targetDate]);
 
   return (
-    <div className="text-white text-xs font-medium font-['Poppins']">
+    <div className="text-white text-xs font-medium font-['Poppins'] max-sm:text-[10px]">
       <p>{remainingDays} Days</p>
     </div>
   );

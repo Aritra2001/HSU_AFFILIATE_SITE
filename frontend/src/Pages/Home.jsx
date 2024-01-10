@@ -78,14 +78,15 @@ const Home = () => {
 
 
   return (
-    <div className='w-full h-fit flex flex-col gap-8 justify-center items-center'>
+    <div className='flex w-full h-full flex flex-col gap-8 justify-center items-center'>
       <Navbar />
       <div className="text-white text-[24px] font-bold font-['Poppins'] flex items-center justify-center sm:text-[46px] sm:mt-[2vh] mt-2">
         Dashboard
       </div>
-      <div className='flex items-center justify-center gap-5'>
-        <div className='w-[900px] h-[533px] bg-stone-900 rounded-[15px] border border-white backdrop-blur-[22px] overflow-auto overflow-x-hidden'>   
-          <div className="text-white text-xl font-semibold font-['Poppins'] mt-[5vh] ml-[4rem]">Student details</div>
+      <div className='flex items-center justify-center gap-5 max-sm:flex-col'>
+        <div className='w-[900px] h-[533px] bg-stone-900 rounded-[15px] border border-white backdrop-blur-[22px] overflow-auto max-sm:w-[300px] max-sm:h-[480px] sm:overflow-x '>
+   
+          <div className="text-white text-xl font-semibold font-['Poppins'] mt-[5vh] ml-[4rem] max-sm:text-[15px] max-sm:ml-6">Student details</div>
           {loading ? (
             // Show loading screen
             <div className="flex items-center justify-center h-full">
@@ -94,17 +95,17 @@ const Home = () => {
           ) : (
             // Show student details table
             <>
-              <table className="text-violet-600 text-[15px] font-medium font-['Poppins'] ml-[4rem] mt-[5vh] flex">
+              <table className="text-violet-600 text-[15px] font-medium font-['Poppins'] ml-[4rem] mt-[5vh] flex max-sm:text-[10px] max-sm:ml-6 max-sm:mt-5">
                 <thead>
-                  <tr className='gap-40 flex'>
+                  <tr className='gap-40 flex max-sm:gap-7'>
                     <th className=''>Name</th>
-                    <th className=''>Email</th>
-                    <th className=''>Phone No</th>
+                    <th className='max-sm:ml-[1.2rem]'>Email</th>
+                    <th className='max-sm:ml-[3.2rem] max-sm:w-[4rem]'>Phone No</th>
                     <th className=''>Payment</th>
                   </tr>
                 </thead>
               </table>
-              <div className="w-[770px] h-[0px] border border-violet-600 ml-[4rem] flex mt-1"></div>
+              <div className="w-[770px] h-[0px] border border-violet-600 ml-[4rem] flex mt-1 max-sm:w-[360px] max-sm:ml-6"></div>
               {students && students.map((student, index, array) => (
                 <StudentDetails key={student._id} student={student} isLastStudent={index === array.length - 1} students={students} />
               ))}
@@ -113,25 +114,27 @@ const Home = () => {
         </div>
         <AddStudents />
       </div>
-      <div className='w-[87%] h-[237px] flex bg-violet-600 rounded-2xl mb-10'>
+      <div className='w-[87%] h-[237px] flex bg-violet-600 rounded-2xl mb-10 max-sm:w-[300px] max-sm:h-[112px] max-sm:mb-[18rem] max-sm:-mt-4'>
         <div>
-          <div className="text-white text-2xl font-semibold font-['Poppins'] justify-top p-1 mt-20 ml-7">
+          <div className="text-white text-2xl font-semibold font-['Poppins'] justify-top p-1 mt-20 ml-7 max-sm:text-sm max-sm:mt-[1rem] max-sm:w-[280px]">
             Space Tech Training & Internship
           </div>
-          <div className='flex flex-row gap-5 mt-[2vh]'>
-          <p className="text-zinc-300 text-base font-medium font-['Poppins'] ml-8">
+          <div className='flex flex-row gap-5 mt-[2vh] max-sm:flex-col'>
+          <p className="text-zinc-300 text-base font-medium font-['Poppins'] ml-8 max-sm:text-[10px] max-sm:mt-[-1rem]">
             Starts In
           </p>
-          <div className="w-[68px] h-[25px] bg-indigo-900 rounded-[5px] border border-zinc-300 items-center flex justify-center">
+          <div className='flex flex-row text-[8px]'>
+          <div className="w-[68px] h-[25px] bg-indigo-900 rounded-[5px] border border-zinc-300 items-center flex justify-center max-sm:ml-8 max-sm:h-[21px] max-sm:text-[8px] max-sm:w-[55px] max-sm:mt-[-1rem] relative">
             {<RemainingDaysCounter targetDate="2024-01-29" />}
           </div>
-          <div class="w-[85px] h-[24px] bg-zinc-200 rounded-md border-black text-black text-[10px] font-bold font-['Poppins'] items-center flex justify-center">
+          <div class=" relative w-[85px] h-[24px] bg-zinc-200 rounded-md border-black text-black text-[10px] font-bold font-['Poppins'] items-center flex justify-center max-sm:w-[70px] max-sm:h-[20px] max-sm:text-[8px] max-sm:mt-[-1rem] ml-8">
           <a href="https://hexstaruniverse.com/courses/space-tech-training-and-internship-program-2/">Visit the page</a>
           </div>
           </div>
+          </div>
         </div>
-        <div className='flex flex-col items-center ml-[34rem] bg-stone-900 w-[20rem] h-[30vh] mt-[2vh] justify-center rounded-2xl border border-white text-white text-[15px] font-medium font-["Poppins"] overflow-hidden'>
-         <div className='flex mr-[5rem] flex-col'>
+        <div className='absolute flex flex-col items-center ml-[61.8rem] bg-stone-900 w-[20rem] h-[30vh] mt-[2vh] justify-center rounded-2xl border border-white text-white text-[15px] font-medium font-["Poppins"] overflow max-sm:mx-auto max-sm:w-[300px] max-sm:h-[120px] max-sm:mt-[8rem] max-sm:'>
+         <div className='flex mr-[5rem] flex-col '>
           <img src={Avatar} alt="avatar" className='mb-3 mr-20' width={60}/>
           <p className='text-violet-600 -mb-1'>Payment</p>
          </div>

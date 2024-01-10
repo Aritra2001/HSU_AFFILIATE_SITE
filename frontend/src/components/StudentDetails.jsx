@@ -78,20 +78,20 @@ const StudentDetails = ({ student, isLastStudent, students }) => {
 
   return (
     <div onClick={handelDivClick}>
-      <table className="text-white text-[15px] font-medium font-['Poppins'] ml-[4rem] flex mt-[2vh]">
+      <table className="text-white text-[15px] font-medium font-['Poppins'] ml-[4rem] flex mt-[2vh] max-sm:text-[8px] max-sm:ml-6">
         <tbody className="grid grid-rows-1">
-          <tr className="grid grid-flow-col gap-20">
-            <td className="capitalize">{student.name}</td>
-            <td className="email">{student.email}</td>
-            <td className="phone">{student.phone}</td>
-            <td className="ml-">{student.payment}</td>
-            <td className="-ml-[4.8rem] cursor-pointer" onClick={handleDelete}>
+          <tr className="grid grid-flow-col gap-20 max-sm:gap-7">
+            <td className="capitalize max-sm:w-[2.2rem]">{student.name}</td>
+            <td className="email max-sm:w-[6.8rem] mx-sm:overflow">{student.email}</td>
+            <td className="phone max-sm:w-[3.5rem]">{student.phone}</td>
+            <td className="max-sm:w-[4rem]">{student.payment}</td>
+            <td className="flex items-start justify-start -ml-[4.8rem] cursor-pointer max-sm:ml-[-30px]" onClick={handleDelete}>
               <MdDelete size={20} />
             </td>
           </tr>
         </tbody>
       </table>
-      {isLastStudent && (<button className=' w-[7rem] text-white bg-violet-600 p-2 rounded-xl mt-7 ml-[24rem] mt-[10vh] flex justify-center items-center gap-2' onClick={downloadTable}><FaArrowAltCircleDown size={20}/>Excel</button>)}
+      {isLastStudent && (<button className=' flex w-[7rem] text-white bg-violet-600 p-2 rounded-xl mt-7 ml-[24rem] mt-[10vh] flex justify-center items-center gap-2 max-sm:text-[10px] max-sm:w-[5rem] max-sm:p-1 mx-sm:rounded-md max-sm:mx-auto' onClick={downloadTable}><FaArrowAltCircleDown size={20}/>Excel</button>)}
 
       {isDeleteModalOpen && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 font-['Poppins']">
@@ -109,7 +109,7 @@ const StudentDetails = ({ student, isLastStudent, students }) => {
       )}
 
       
-      {!isLastStudent && (<div className="w-[770px] h-[0px] border border-neutral-600 ml-[4rem] flex mt-1"></div>)}
+      {!isLastStudent && (<div className="w-[770px] h-[0px] border border-neutral-600 ml-[4rem] flex mt-1 max-sm:w-[360px] max-sm:ml-6"></div>)}
     </div>
   );
 };
