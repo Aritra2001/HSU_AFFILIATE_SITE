@@ -133,7 +133,7 @@ const Home = () => {
          <div className='absolute'>
          <p className='flex ml-[10rem] mb-[3rem]'>{name.name}</p>
          <div className='flex ml-[10.5rem]'>
-         <input type="radio" value={payment = 'Paid'} onClick={handelCount} onChange={(e) => setPayment(e.target.value)}></input>
+         <input type="checkbox" value={payment = 'Paid'} onClick={handelCount} onChange={(e) => setPayment(e.target.value)}></input>
          <p className='flex ml-2'>₹{calculatedRupee !== null ? calculatedRupee : 0}</p>
          </div>
          </div>
