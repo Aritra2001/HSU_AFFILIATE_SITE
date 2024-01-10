@@ -28,7 +28,7 @@ const Navbar = () => {
   return (
     <div className='w-full relative bg-zinc-900'>
         <nav className="grid items-center justify-between h-20 grid-cols-2 text-white md:grid-cols-6 font-['Gilroy']">
-        <a href="/"><img className='w-20 col-span-2 ml-4 lg:w-[120px] lg:ml-14' src={Logo} alt="hexstar universe"/></a>
+        <a href="https://hexstaruniverse.com/"><img className='w-20 col-span-2 ml-4 lg:w-[120px] lg:ml-14' src={Logo} alt="hexstar universe"/></a>
         <ul className='flex-row items-center hidden col-span-3 capitalize space-x-7 md:flex'>
             <a href='https://hexstaruniverse.com/all-classes/'><li>all program</li></a>
             <a href="https://hexstaruniverse.com/for-institutions/"><li>For institutions</li></a>
