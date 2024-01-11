@@ -70,7 +70,7 @@ const deleteStudent = async (req, res) => {
     const students = await student.findOneAndDelete({_id: id})
   
     if(!students) {
-      return res.status(400).json({error: 'No such workout'})
+      return res.status(400).json({error: 'No such student'})
     }
   
     res.status(200).json(students)
