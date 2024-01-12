@@ -11,7 +11,7 @@ const app = express()
 //cors origin
 //cors
 const allowedOrigins = [
-    'http://localhost:3000', 'https://hsu-affiliate-site.vercel.app'
+    'http://localhost:3000', 'https://affiliate.hexstaruniverse.com/'
 ];
 
 app.use(cors({
