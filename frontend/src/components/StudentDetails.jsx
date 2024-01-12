@@ -75,6 +75,19 @@ const StudentDetails = ({ student, isLastStudent, students }) => {
     document.body.removeChild(a);
   };
 
+  const getBackgroundColor = (paymentStatus) => {
+    switch (paymentStatus) {
+      case 'Paid':
+        return '#1DFF4E';
+      case 'Pending':
+        return 'red';
+      case 'Partial':
+        return 'yellow'; // You can adjust the color for Partial
+      default:
+        return ''; // Add a default color if needed
+    }
+  };
+
 
   return (
     <div onClick={handelDivClick}>
@@ -84,7 +97,7 @@ const StudentDetails = ({ student, isLastStudent, students }) => {
             <td className="capitalize max-sm:w-[2.2rem]">{student.name}</td>
             <td className="email max-sm:w-[6.8rem] mx-sm:overflow">{student.email}</td>
             <td className="phone max-sm:w-[3.5rem]">{student.phone}</td>
-            <td className="max-sm:w-[4rem]">{student.payment}</td>
+            <td className="max-sm:w-[4rem] font-regular" style={{color: getBackgroundColor(student.payment)}}>{student.payment}</td>
             <td className="flex items-start justify-start -ml-[4.8rem] cursor-pointer max-sm:ml-[-30px]" onClick={handleDelete}>
               <MdDelete size={20} />
             </td>
