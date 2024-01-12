@@ -133,8 +133,8 @@ const Home = () => {
             <input type="text" className='flex flex-end w-[196px] h-[39px] opacity-70 bg-stone-950 rounded-[10px] border border-zinc-300 indent-4 max-sm:w-[100px] max-sm:h-[25px] mt-7 ml-[20rem] max-sm:ml-[8.2rem] text-white max-sm:text-[10px] max-sm:indent-3 max-sm:placeholder:text-[10px] max-sm:mt-9' value={name} onChange={(e) => setName(e.target.value)} placeholder='Search Name'></input>
             <IoSearch className='absolute flex mt-[5.3vh] ml-[44rem] cursor-pointer max-sm:ml-[18.5rem] max-sm:w-[12px] max-sm:mt-[5.4vh]' size={20} color='8B8B8B' onClick={() => setToggle(!toggle)}/>
             <button 
-            className='px-3 capitalize text-xs bg-[#6637ED] h-6 rounded-md md:text-base text-white font-["Poppins"] mt-[1.7rem] ml-4 sm:w-[5rem] sm:h-[5.5vh] max-sm:text-[10px] max-sm:mt-9' 
-            onClick={handelReset}>Reset</button>
+            className='px-3 capitalize text-xs bg-[#6637ED] h-6 rounded-md md:text-base text-white font-["Poppins"] mt-[1.7rem] ml-4 sm:w-[5rem] sm:h-[5.5vh] max-sm:text-[10px] max-sm:mt-9 flex justify-center items-center' 
+            onClick={handelReset}>reset</button>
             </div>
             {reset && (
               <div className='flex items-center justify-center h-full text-white font-["Poppins"]'>
