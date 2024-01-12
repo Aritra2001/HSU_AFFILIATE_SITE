@@ -73,7 +73,7 @@ const Login = () => {
   return (
     <div className='h-fit bg-center text-white flex flex-col gap-10 items-center justify-center'>
       <Navbar />
-      <div className="border border-[#d9d9d9] p-10 rounded-lg bg-[#1f1f1f] w-3/4 flex flex-col gap-8 md:w-[400px] " >
+      <div className="border border-[#d9d9d9] p-10 rounded-lg bg-[#1f1f1f] w-3/4 flex flex-col gap-8 md:w-[400px] mt-14" >
         
         <input type="email" className='p-2 bg-transparent border rounded-md indent-[1rem]' placeholder='Email' onChange={(e)=>setEmail(e.target.value)} value={email}/>
         <div className='container relative w-full'>  
