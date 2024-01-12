@@ -16,6 +16,7 @@ const Home = () => {
   const { students, dispatch } = useStudentsContext()
   const [loading, setLoading] = useState(true);
   const [toggle, setToggle] = useState(true)
+  const [reset, setReset] = useState(false)
   const [name, setName] = useState('')
   var [payment, setPayment] = useState('')
   const [calculatedRupee, setCalculatedRupee] = useState(null);
@@ -41,7 +42,7 @@ const Home = () => {
 
       const search = { name }
 
-      
+      setReset(true)
         const response = await fetch('https://hsu-affiliate-site-ph69.vercel.app/api/students/name', {
           method: 'POST',
           body: JSON.stringify(search),
@@ -50,7 +51,7 @@ const Home = () => {
             'Authorization': `Bearer ${user.token}`,
           }
         });
-
+        setReset(false)
         const json = await response.json()
 
         if(response.ok) {
@@ -129,14 +130,18 @@ const Home = () => {
    
           <div className='flex flex-row'>
             <div className="text-white text-xl font-semibold font-['Poppins'] mt-[5vh] ml-[4rem] max-sm:text-[15px] max-sm:ml-6 flex capitalize">Student details</div>
-            <input type="text" className='flex flex-end w-[196px] h-[39px] opacity-70 bg-stone-950 rounded-[10px] border border-zinc-300 indent-4 max-sm:w-[100px] max-sm:h-[25px] mt-7 ml-[20rem] max-sm:ml-[10rem] text-white max-sm:text-[10px] max-sm:indent-3 max-sm:placeholder:text-[10px]' value={name} onChange={(e) => setName(e.target.value)} placeholder='Search Name'></input>
-            <IoSearch className='absolute flex mt-[5.3vh] ml-[44rem] cursor-pointer max-sm:ml-[20.3rem] max-sm:w-[12px] max-sm:mt-[4.3vh]' size={20} color='8B8B8B' onClick={() => setToggle(!toggle)}/>
+            <input type="text" className='flex flex-end w-[196px] h-[39px] opacity-70 bg-stone-950 rounded-[10px] border border-zinc-300 indent-4 max-sm:w-[100px] max-sm:h-[25px] mt-7 ml-[20rem] max-sm:ml-[8.2rem] text-white max-sm:text-[10px] max-sm:indent-3 max-sm:placeholder:text-[10px] max-sm:mt-9' value={name} onChange={(e) => setName(e.target.value)} placeholder='Search Name'></input>
+            <IoSearch className='absolute flex mt-[5.3vh] ml-[44rem] cursor-pointer max-sm:ml-[18.5rem] max-sm:w-[12px] max-sm:mt-[5.4vh]' size={20} color='8B8B8B' onClick={() => setToggle(!toggle)}/>
             <button 
-            className='px-3 capitalize text-xs bg-[#6637ED] h-6 rounded-md md:text-base text-white font-["Poppins"] mt-[1.7rem] ml-4 sm:w-[5rem] sm:h-[5.5vh]' 
+            className='px-3 capitalize text-xs bg-[#6637ED] h-6 rounded-md md:text-base text-white font-["Poppins"] mt-[1.7rem] ml-4 sm:w-[5rem] sm:h-[5.5vh] max-sm:text-[10px] max-sm:mt-9' 
             onClick={handelReset}>Reset</button>
-
-
             </div>
+            {reset && (
+              <div className='flex items-center justify-center h-full text-white font-["Poppins"]'>
+                <p>Loading...</p>
+              </div>
+            )}
+
           {loading ? (
             // Show loading screen
             <div className="flex items-center justify-center h-full">
