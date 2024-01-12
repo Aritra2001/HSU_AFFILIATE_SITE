@@ -60,6 +60,24 @@ const userStudent = async (req, res) => {
     res.status(200).json(students)
 }
 
+const userSearch = async (req, res) => {
+    const { name } = req.body;
+    const user_id = req.user._id;
+  
+    // Use a regular expression to match names containing the provided substring
+    const regex = new RegExp(name, 'i'); // 'i' makes the search case-insensitive
+  
+    try {
+      const students = await student.find({ name: { $regex: regex }, user_id }).sort({ createdAt: -1 });
+  
+      res.status(200).json(students);
+    } catch (error) {
+      console.error('Error searching for students:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+  
+
 const deleteStudent = async (req, res) => {
     const { id } = req.params
   
@@ -78,4 +96,4 @@ const deleteStudent = async (req, res) => {
   
     
 
-module.exports = { addStudent, getStudent, deleteStudent, userStudent }
+module.exports = { addStudent, getStudent, deleteStudent, userStudent, userSearch }

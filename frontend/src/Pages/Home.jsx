@@ -6,12 +6,17 @@ import AddStudents from '../components/AddStudents';
 import RemainingDaysCounter from '../components/RemainingDaysCounter';
 import { useAuthContext } from '../hooks/useAuthContext';
 import Avatar from '../assets/Group.svg'
+import { IoSearch } from "react-icons/io5";
+
+
 
 const Home = () => {
 
-  const name = JSON.parse(localStorage.getItem('user'))
+  const affiliate = JSON.parse(localStorage.getItem('user'))
   const { students, dispatch } = useStudentsContext()
   const [loading, setLoading] = useState(true);
+  const [toggle, setToggle] = useState(true)
+  const [name, setName] = useState('')
   var [payment, setPayment] = useState('')
   const [calculatedRupee, setCalculatedRupee] = useState(null);
   const { user } = useAuthContext()
@@ -32,10 +37,37 @@ const Home = () => {
       setLoading(false); // Set loading to false after data is fetched
     };
 
-    if(user) {
-      fetchStudentData();
-    }
-  }, [dispatch, user]);
+    const handelSearch = async() => {
+
+      const search = { name }
+
+      
+        const response = await fetch('https://hsu-affiliate-site-ph69.vercel.app/api/students/name', {
+          method: 'POST',
+          body: JSON.stringify(search),
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${user.token}`,
+          }
+        });
+
+        const json = await response.json()
+
+        if(response.ok) {
+          dispatch({type: 'SET_STUDENTS', payload: json})
+        }
+
+      }
+      if (toggle && user) {
+        fetchStudentData();
+      }
+    
+      // Fetch data when search icon is clicked
+      if (name && !toggle) {
+        handelSearch()
+      }
+
+  }, [dispatch, user, toggle, name]);
 
   useEffect(() => {
     const handelCount = async () => {
@@ -76,6 +108,15 @@ const Home = () => {
   
   })
 
+  const handelReset = () => {
+
+    if(toggle === false) {
+      setToggle(!toggle)
+      setName('')
+    }
+
+  }
+
 
   return (
     <div className='flex w-full h-full flex flex-col gap-8 justify-center items-center'>
@@ -86,7 +127,16 @@ const Home = () => {
       <div className='flex items-center justify-center gap-5 max-sm:flex-col'>
         <div className='w-[900px] h-[533px] bg-stone-900 rounded-[15px] border border-white backdrop-blur-[22px] overflow-auto max-sm:w-[300px] max-sm:h-[480px] sm:overflow-x '>
    
-          <div className="text-white text-xl font-semibold font-['Poppins'] mt-[5vh] ml-[4rem] max-sm:text-[15px] max-sm:ml-6">Student details</div>
+          <div className='flex flex-row'>
+            <div className="text-white text-xl font-semibold font-['Poppins'] mt-[5vh] ml-[4rem] max-sm:text-[15px] max-sm:ml-6 flex capitalize">Student details</div>
+            <input type="text" className='flex flex-end w-[196px] h-[39px] opacity-70 bg-stone-950 rounded-[10px] border border-zinc-300 indent-4 max-sm:w-[100px] max-sm:h-[25px] mt-7 ml-[20rem] max-sm:ml-[10rem] text-white max-sm:text-[10px] max-sm:indent-3 max-sm:placeholder:text-[10px]' value={name} onChange={(e) => setName(e.target.value)} placeholder='Search Name'></input>
+            <IoSearch className='absolute flex mt-[5.3vh] ml-[44rem] cursor-pointer max-sm:ml-[20.3rem] max-sm:w-[12px] max-sm:mt-[4.3vh]' size={20} color='8B8B8B' onClick={() => setToggle(!toggle)}/>
+            <button 
+            className='px-3 capitalize text-xs bg-[#6637ED] h-6 rounded-md md:text-base text-white font-["Poppins"] mt-[1.7rem] ml-4 sm:w-[5rem] sm:h-[5.5vh]' 
+            onClick={handelReset}>Reset</button>
+
+
+            </div>
           {loading ? (
             // Show loading screen
             <div className="flex items-center justify-center h-full">
@@ -139,7 +189,7 @@ const Home = () => {
           <p className='text-violet-600 -mb-1'>Payment</p>
          </div>
          <div className='absolute'>
-         <p className='flex ml-[10rem] mb-[3rem]'>{name.name}</p>
+         <p className='flex ml-[10rem] mb-[3rem]'>{affiliate.name}</p>
          <div className='flex ml-[10.5rem]'>
          <p className='flex ml-4' value={payment = 'Paid'} onChange={(e) => setPayment(e.target.value)}>₹{calculatedRupee !== null ? calculatedRupee : 0}</p>
          </div>
