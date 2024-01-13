@@ -1,16 +1,8 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 const Heropage = () => {
-
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
-  }, []);
 
   const navigator = useNavigate()
 
@@ -21,7 +13,7 @@ const Heropage = () => {
       <div className=" max-sm:text-sm text-white text-2xl font-normal font-['Poppins'] max-sm:w-[209px] text-center">Promote space Tech Training & <span className="text-violet-600 text-2xl font-normal font-['Poppins'] max-sm:text-sm">Earn rewards</span></div>
 
       {/* block 1  */}
-      <div className='flex mt-[5rem] max-sm:mt-[2.2rem]' data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600">
+      <div className='flex mt-[5rem] max-sm:mt-[2.2rem]'>
         <div className="absolute text-violet-600 text-[170px] font-bold font-['Prompt'] max-sm:text-[54px] ml-[-3rem] mt-[-6vh] max-sm:ml-[-0.8rem] max-sm:mt-[-0.3rem] font-bold">1</div>
         <div className="w-[1080px] h-[168px] bg-zinc-900 rounded-[15px] border border-white max-sm:w-[250px] max-sm:h-[70px] max-sm:rouded-[10px] flex flex-col" >
           <div className="text-white text-[36px] font-semibold font-['Poppins'] max-sm:text-base ml-[6rem] mt-[2vh] max-sm:ml-[1.5rem] max-sm:mt-[1.2vh]">Fill the form</div>
@@ -30,7 +22,7 @@ const Heropage = () => {
       </div>
 
       {/* block 2 */}
-      <div className='flex mt-[5rem] max-sm:mt-[1.5rem]' data-aos="fade-up">
+      <div className='flex mt-[5rem] max-sm:mt-[1.5rem]'>
         <div className="absolute text-violet-600 text-[170px] font-bold font-['Prompt'] max-sm:text-[54px] ml-[-3rem] mt-[-6vh] max-sm:ml-[-0.8rem] max-sm:mt-[0.56rem] font-bold">2</div>
         <div className="w-[1133px] h-[170px] bg-zinc-900 rounded-[15px] border border-white max-sm:w-[250px] max-sm:h-[95px] max-sm:rouded-[10px] flex flex-col" >
           <div className="text-white text-[36px] font-semibold font-['Poppins'] max-sm:text-base ml-[6rem] mt-[2vh] max-sm:ml-[1.5rem] max-sm:mt-[1.2vh]">Refer</div>
@@ -39,7 +31,7 @@ const Heropage = () => {
       </div>
 
       {/* block 3 */}
-      <div className='flex mt-[5rem] max-sm:mt-[1.5rem]' data-aos="fade-up">
+      <div className='flex mt-[5rem] max-sm:mt-[1.5rem]'>
         <div className="absolute text-violet-600 text-[170px] font-bold font-['Prompt'] max-sm:text-[54px] ml-[-3rem] mt-[-6vh] max-sm:ml-[-0.8rem] max-sm:mt-[0.56rem] font-bold">3</div>
         <div className="w-[1133px] h-[170px] bg-zinc-900 rounded-[15px] border border-white max-sm:w-[250px] max-sm:h-[109px] max-sm:rouded-[10px] flex flex-col" >
           <div className="text-white text-[36px] font-semibold font-['Poppins'] max-sm:text-base ml-[6rem] mt-[2vh] max-sm:ml-[1.5rem] max-sm:mt-[1.8vh] max-sm:leading-4">Reap the Rewards & Celebrate Success!</div>
