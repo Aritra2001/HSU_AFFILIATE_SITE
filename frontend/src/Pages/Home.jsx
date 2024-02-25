@@ -18,6 +18,7 @@ const Home = () => {
   const [toggle, setToggle] = useState(true)
   const [reset, setReset] = useState(false)
   const [name, setName] = useState('')
+  var [payment, setPayment] = useState('')
   const [calculatedRupee, setCalculatedRupee] = useState(null);
   const { user } = useAuthContext()
 
@@ -71,26 +72,32 @@ const Home = () => {
 
   useEffect(() => {
     const handelCount = async () => {
-
+  
+      const money = { payment }
   
       try {
         const response = await fetch('https://hsu-affiliate-site-ph69.vercel.app/api/students/money', {
-          method: 'GET',
-          body: JSON.stringify(),
+          method: 'POST',
+          body: JSON.stringify(money),
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${user.token}`,
           },
         });
   
-        const rupees = await response.json();
+        const rupeeData = await response.json();
+  
         if (response.ok) {
+          setPayment('');
+  
+          // Assuming rupeeData is an array, you can calculate the length
+          const rupeeLength = rupeeData.length;
   
           // Multiply 500 with the length and update the state
-          setCalculatedRupee(Math.floor(rupees.totalAmount * 17 / 100));
+          setCalculatedRupee(rupeeLength * 500);
         } else {
           // Handle the case where the response is not okay
-          console.error('Error:', rupees.error);
+          console.error('Error:', rupeeData.error);
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -175,10 +182,6 @@ const Home = () => {
           <div className="w-[68px] h-[25px] bg-indigo-900 rounded-[5px] border border-zinc-300 items-center flex justify-center max-sm:ml-8 max-sm:h-[21px] max-sm:text-[8px] max-sm:w-[55px] max-sm:mt-[-1rem] relative">
 
             {<RemainingDaysCounter targetDate="2024-03-17" />}
-            {<RemainingDaysCounter targetDate="2024-02-26" />}
-
-
-            {<RemainingDaysCounter targetDate="2024-02-26" />}
 
           </div>
           <div class=" relative w-[85px] h-[24px] bg-zinc-200 rounded-md border-black text-black text-[10px] font-bold font-['Poppins'] items-center flex justify-center max-sm:w-[70px] max-sm:h-[20px] max-sm:text-[8px] max-sm:mt-[-1rem] ml-8">
@@ -195,7 +198,7 @@ const Home = () => {
          <div className='absolute'>
          <p className='flex ml-[10rem] mb-[3rem]'>{affiliate.name}</p>
          <div className='flex ml-[10.5rem]'>
-         <p className='flex ml-4' >₹{calculatedRupee !== null ? calculatedRupee : 0}</p>
+         <p className='flex ml-4' value={payment = 'Paid'} onChange={(e) => setPayment(e.target.value)}>₹{calculatedRupee !== null ? calculatedRupee : 0}</p>
          </div>
          </div>
         </div>
