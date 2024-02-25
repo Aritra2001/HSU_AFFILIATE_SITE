@@ -180,7 +180,11 @@ const Home = () => {
           </p>
           <div className='flex flex-row text-[8px]'>
           <div className="w-[68px] h-[25px] bg-indigo-900 rounded-[5px] border border-zinc-300 items-center flex justify-center max-sm:ml-8 max-sm:h-[21px] max-sm:text-[8px] max-sm:w-[55px] max-sm:mt-[-1rem] relative">
+<<<<<<< Updated upstream
             {<RemainingDaysCounter targetDate="2024-03-17" />}
+=======
+            {<RemainingDaysCounter targetDate="2024-02-26" />}
+>>>>>>> Stashed changes
           </div>
           <div class=" relative w-[85px] h-[24px] bg-zinc-200 rounded-md border-black text-black text-[10px] font-bold font-['Poppins'] items-center flex justify-center max-sm:w-[70px] max-sm:h-[20px] max-sm:text-[8px] max-sm:mt-[-1rem] ml-8">
           <a href="https://hexstaruniverse.com/courses/space-tech-training-and-internship-program-2/">Visit the page</a>
