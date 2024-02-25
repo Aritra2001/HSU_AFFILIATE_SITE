@@ -51,14 +51,18 @@ const getStudent = async (req, res) => {
 }
 
 const userStudent = async (req, res) => {
+    const user_id = req.user._id;
 
-    const { payment } = req.body
-    const user_id = req.user._id
+    // Filtering out students with payment status as "pending"
+    const students = await student.find({ payment: { $ne: "Pending" }, user_id }).sort({createdAt: -1});
 
-    const students = await student.find({ payment, user_id }).sort({createdAt: -1})
+    // Extracting amount property from each student and summing them up
+    const totalAmount = students.map(student => student.amount).reduce((acc, curr) => acc + curr, 0);
 
-    res.status(200).json(students)
+    res.status(200).json({ totalAmount });
 }
+
+
 
 const userSearch = async (req, res) => {
     const { name } = req.body;
