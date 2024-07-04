@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { RxCross1 } from "react-icons/rx";
-import Logo from '../assets/hsulogo.svg'
+import Logo from '../assets/hsulogo.png'
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useNavigate } from 'react-router-dom';
