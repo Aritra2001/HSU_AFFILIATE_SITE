@@ -111,11 +111,9 @@ const Home = () => {
         if (response.ok) {
           setPayment('');
   
-          // Assuming rupeeData is an array, you can calculate the length
-          const rupeeLength = rupeeData.length;
-  
           // Multiply 500 with the length and update the state
-          setCalculatedRupee(rupeeLength * 50);
+          setCalculatedRupee(rupeeData.totalAmount * 12.5 / 100);
+          console.log(calculatedRupee)
         } else {
           // Handle the case where the response is not okay
           console.error('Error:', rupeeData.error);
