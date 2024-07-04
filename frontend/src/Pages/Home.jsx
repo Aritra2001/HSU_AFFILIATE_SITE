@@ -115,7 +115,7 @@ const Home = () => {
           const rupeeLength = rupeeData.length;
   
           // Multiply 500 with the length and update the state
-          setCalculatedRupee(rupeeLength * 500);
+          setCalculatedRupee(rupeeLength * 50);
         } else {
           // Handle the case where the response is not okay
           console.error('Error:', rupeeData.error);
