@@ -11,7 +11,7 @@ router.use(requireAuth)
 //routes
 router.post('/', addStudent)
 
-router.get('/money', userStudent)
+router.post('/money', userStudent)
 
 router.post('/name', userSearch)
 
