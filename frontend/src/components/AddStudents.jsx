@@ -109,8 +109,8 @@ const AddStudents = () => {
                     <select className='w-[196px] h-[39px] opacity-70 bg-stone-950 rounded-[10px] border border-zinc-300 indent-4 text-white max-sm:w-[150px] max-sm:h-[30px]' value={payment} onChange={(e) => setPayment(e.target.value)} style={{ color: payment ? "#fff" : "#696969" }}>
                         <option value="null">Select</option>
                         <option value="Paid">Paid</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Partial">Partial</option>
+                        {/* <option value="Pending">Pending</option>
+                        <option value="Partial">Partial</option> */}
                     </select>
                 </li>
                 <li className='flex gap-4 items-center max-sm:gap-0'>

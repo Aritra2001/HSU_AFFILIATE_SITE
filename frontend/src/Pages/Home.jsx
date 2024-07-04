@@ -7,6 +7,8 @@ import RemainingDaysCounter from '../components/RemainingDaysCounter';
 import { useAuthContext } from '../hooks/useAuthContext';
 import Avatar from '../assets/Group.svg'
 import { IoSearch } from "react-icons/io5";
+import { FaShare } from "react-icons/fa6";
+
 
 
 
@@ -21,6 +23,25 @@ const Home = () => {
   var [payment, setPayment] = useState('')
   const [calculatedRupee, setCalculatedRupee] = useState(null);
   const { user } = useAuthContext()
+
+  const handleShare = async () => {
+      const shareData = {
+        title: 'Check this out!',
+        text: 'Here is a link I wanted to share with you.',
+        url: 'https://hexstaruniverse.com/all-courses/ai-for-space-application/', // Replace with the URL you want to share
+      };
+  
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+          console.log('Link shared successfully');
+        } else {
+          console.log('Web Share API is not supported in this browser');
+        }
+      } catch (error) {
+        console.error('Error sharing the link:', error);
+      }
+    };
 
   useEffect(() => {
     const fetchStudentData = async () => {
@@ -117,6 +138,7 @@ const Home = () => {
     }
 
   }
+  
 
 
   return (
@@ -180,10 +202,10 @@ const Home = () => {
           </p>
           <div className='flex flex-row text-[8px]'>
           <div className="w-[68px] h-[25px] bg-indigo-900 rounded-[5px] border border-zinc-300 items-center flex justify-center max-sm:ml-8 max-sm:h-[21px] max-sm:text-[8px] max-sm:w-[55px] max-sm:mt-[-1rem] relative">
-            {<RemainingDaysCounter targetDate="2024-03-17" />}
+            {<RemainingDaysCounter targetDate="2024-07-13" />}
           </div>
-          <div class=" relative w-[85px] h-[24px] bg-zinc-200 rounded-md border-black text-black text-[10px] font-bold font-['Poppins'] items-center flex justify-center max-sm:w-[70px] max-sm:h-[20px] max-sm:text-[8px] max-sm:mt-[-1rem] ml-8">
-          <a href="https://hexstaruniverse.com/courses/space-tech-training-and-internship-program-2/">Visit the page</a>
+          <div class=" relative w-[100px] h-[24px] bg-zinc-200 rounded-md border-black text-black text-[10px] font-bold font-['Poppins'] items-center flex justify-center max-sm:w-[90px] max-sm:h-[20px] max-sm:text-[8px] max-sm:mt-[-1rem] ml-8" onClick={handleShare}>
+          <p className='flex justify-center items-center gap-2 cursor-pointer'>Share Course<FaShare color='#6637ED'/></p>
           </div>
           </div>
           </div>
