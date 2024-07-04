@@ -98,7 +98,7 @@ const Home = () => {
   
       try {
         const response = await fetch('https://hsu-affiliate-site-ph69.vercel.app/api/students/money', {
-          method: 'GET',
+          method: 'POST',
           body: JSON.stringify(money),
           headers: {
             'Content-Type': 'application/json',
