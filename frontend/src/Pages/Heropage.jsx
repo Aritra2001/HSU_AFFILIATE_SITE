@@ -35,7 +35,7 @@ const Heropage = () => {
         <div className="absolute text-violet-600 text-[170px] font-bold font-['Prompt'] max-sm:text-[54px] ml-[-3rem] mt-[-6vh] max-sm:ml-[-0.8rem] max-sm:mt-[0.56rem] font-bold">3</div>
         <div className="w-[1133px] h-[170px] bg-zinc-900 rounded-[15px] border border-white max-sm:w-[250px] max-sm:h-[109px] max-sm:rouded-[10px] flex flex-col" >
           <div className="text-white text-[36px] font-semibold font-['Poppins'] max-sm:text-base ml-[6rem] mt-[2vh] max-sm:ml-[1.5rem] max-sm:mt-[1.8vh] max-sm:leading-4">Reap the Rewards & Celebrate Success!</div>
-          <div className="w-[943px] text-white text-[20px] font-normal font-['Poppins'] leading-[37px] ml-[6rem] max-sm:ml-[1.5rem] max-sm:mt-[0.5vh] max-sm:w-[218px] max-sm:text-[8px] max-sm:leading-3 max-sm:mt-[-0.1vh]">Get access to unique affiliate links, banners, and marketing materials. Share them with your audience and start earning for every purchase made through your links.</div>
+          <div className="w-[943px] text-white text-[20px] font-normal font-['Poppins'] leading-[37px] ml-[6rem] max-sm:ml-[1.5rem] max-sm:mt-[0.5vh] max-sm:w-[218px] max-sm:text-[8px] max-sm:leading-3 max-sm:mt-[-0.1vh]">Watch your hard work pay off! As you reach milestones and generate sales, unlock exciting rewards and enjoy exclusive benefits.</div>
         </div>
       </div>
 

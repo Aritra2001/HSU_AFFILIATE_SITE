@@ -22,7 +22,7 @@ const affiliate_post = async (req, res) => {
     var  voter_reg =  /^[A-Z]{3}[0-9]{7}$/.test(id_proof)
     var pan_reg = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(id_proof)
     var date_reg = /^(\d{1,2})-(\d{1,2})-(\d{4})$/.test(dob)
-    var pass = 'STTIP' + phone.toString().substring(0,4)
+    var pass = 'HSU' + phone.toString().substring(0,4)
 
     const date = new Date(dob)
 
