@@ -28,7 +28,7 @@ const Home = () => {
       const shareData = {
         title: 'Check this out!',
         text: 'Here is a link I wanted to share with you.',
-        url: 'https://hexstaruniverse.com/all-courses/ai-for-space-application/', // Replace with the URL you want to share
+        url: 'https://hexstaruniverse.com/all-courses/', // Replace with the URL you want to share
       };
   
       try {
@@ -113,7 +113,6 @@ const Home = () => {
   
           // Multiply 500 with the length and update the state
           setCalculatedRupee(rupeeData.totalAmount * 12.5 / 100);
-          console.log(calculatedRupee)
         } else {
           // Handle the case where the response is not okay
           console.error('Error:', rupeeData.error);
@@ -190,17 +189,17 @@ const Home = () => {
         <AddStudents />
       </div>
       <div className='w-[87%] h-[237px] flex bg-violet-600 rounded-2xl mb-10 max-sm:w-[300px] max-sm:h-[112px] max-sm:mb-[18rem] max-sm:-mt-4'>
-        <div>
-          <div className="text-white text-2xl font-semibold font-['Poppins'] justify-top p-1 mt-20 ml-7 max-sm:text-sm max-sm:mt-[1rem] max-sm:w-[280px]">
-            Space Tech Training & Internship
+        <div className='flex flex-col gap-20 max-sm:gap-3'>
+          <div className="text-white text-2xl font-semibold font-['Poppins'] justify-top p-8 max-sm:p-1 max-sm:ml-7 max-sm:text-sm max-sm:mt-[1rem] max-sm:w-[280px]">
+            All Couses Details
           </div>
-          <div className='flex flex-row gap-5 mt-[2vh] max-sm:flex-col'>
+          <div className='flex flex-row gap-5 max-sm:flex-col'>
           <p className="text-zinc-300 text-base font-medium font-['Poppins'] ml-8 max-sm:text-[10px] max-sm:mt-[-1rem]">
             Starts In
           </p>
           <div className='flex flex-row text-[8px]'>
           <div className="w-[68px] h-[25px] bg-indigo-900 rounded-[5px] border border-zinc-300 items-center flex justify-center max-sm:ml-8 max-sm:h-[21px] max-sm:text-[8px] max-sm:w-[55px] max-sm:mt-[-1rem] relative">
-            {<RemainingDaysCounter targetDate="2024-07-13" />}
+            {<RemainingDaysCounter targetDate="2024-07-15" />}
           </div>
           <div class=" relative w-[100px] h-[24px] bg-zinc-200 rounded-md border-black text-black text-[10px] font-bold font-['Poppins'] items-center flex justify-center max-sm:w-[90px] max-sm:h-[20px] max-sm:text-[8px] max-sm:mt-[-1rem] ml-8" onClick={handleShare}>
           <p className='flex justify-center items-center gap-2 cursor-pointer'>Share Course<FaShare color='#6637ED'/></p>
@@ -214,7 +213,7 @@ const Home = () => {
           <p className='text-violet-600 -mb-1'>Payment</p>
          </div>
          <div className='absolute'>
-         <p className='flex ml-[10rem] mb-[3rem]'>{affiliate.name}</p>
+         <p className='flex justify-center items-center ml-[10rem] mb-[3rem] font-semibold'>{affiliate.name}</p>
          <div className='flex ml-[10.5rem]'>
          <p className='flex ml-4' value={payment = 'Paid'} onChange={(e) => setPayment(e.target.value)}>₹{calculatedRupee !== null ? calculatedRupee : 0}</p>
          </div>
