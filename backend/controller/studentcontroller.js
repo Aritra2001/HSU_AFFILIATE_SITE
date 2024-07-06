@@ -24,11 +24,11 @@ const addStudent = async (req, res) => {
         if(payment === 'null') {
             throw Error('Select a valid Payment status!')
         }
-        if(amount > 399 || amount < 0) {
+        if(amount > 599 || amount < 0) {
             throw Error('Enter the Amount Correctly!')
         }
-        if(payment === 'Paid' && amount !== '399') {
-            throw Error('Payment has to be 2999 for Status Paid!')
+        if(payment === 'Paid' && (amount !== '399' || amount !=='599' )) {
+            throw Error('Payment has to be 399 or 599 for Status Paid!')
         }
         if(payment === 'Pending' && amount !== '0') {
             throw Error('Payment has to be 0 for Status Pending!')
