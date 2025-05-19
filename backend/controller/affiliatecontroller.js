@@ -14,115 +14,195 @@ const createToken = (_id) => {
 const instanceResend = new Resend(process.env.RESEND_API_KEY);
 
 const affiliate_post = async (req, res) => {
+  const { name, email, phone, experience, expectations, institution, dob } = req.body;
 
-    const { name, email, phone, experience, id_type, id_proof, expectation, institution, dob } = req.body
+  // simple regex checks
+  const isNum = /^\d+$/.test(phone);
+  const dateReg = /^(\d{1,2})-(\d{1,2})-(\d{4})$/.test(dob);
+  const defaultPass = 'HSU' + phone.toString().substring(0, 4);
 
-    var isnum =  /^\d+$/.test(phone);
-    var addhar_reg =  /^([0-9]{4}[0-9]{4}[0-9]{4}$)|([0-9]{4}\s[0-9]{4}\s[0-9]{4}$)|([0-9]{4}-[0-9]{4}-[0-9]{4}$)/.test(id_proof)
-    var  voter_reg =  /^[A-Z]{3}[0-9]{7}$/.test(id_proof)
-    var pan_reg = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(id_proof)
-    var date_reg = /^(\d{1,2})-(\d{1,2})-(\d{4})$/.test(dob)
-    var pass = 'HSU' + phone.toString().substring(0,4)
-
-    const date = new Date(dob)
-
-    try {
-
-        if(!name || !email || !phone || !id_type || !id_proof || !institution || !dob) {
-            throw Error('Mandetory fields must be filled!')
-        }
-
-        if(name.length <= 1) {
-            throw Error('Enter a Valid Name')
-        }
-        
-        if(!validator.isEmail(email)) {
-            throw Error('Email is not valid!')
-        }
-
-        const mail = await affiliates.findOne({email}) 
-        if(mail) {
-            throw Error('Email Already Exists!')
-        }
-        
-        if((phone.toString().length < 10 || phone.toString().length >= 11) && isnum === true) {
-            throw Error('Enter a valid Phone Number')
-        }
-
-        const ph_no = await affiliates.findOne({phone})
-        if(ph_no) {
-            throw Error('Phone no Alreay Exits!')
-        }
-
-        if(id_type === 'null') {
-            throw Error('Choose an ID Type')
-        }
-
-        if(id_type === 'Addhar' && addhar_reg === false) {
-            throw Error('Invalid Addhar Number!')
-        }
-
-        if(id_type === 'Voter' && voter_reg === false) {
-            throw Error('Invalid Voter Number!')
-        }
-        if(id_type === 'Pan' && pan_reg === false) {
-            throw Error('Invalid Pan Number!')
-        }
-
-        const aff_id = await affiliates.findOne({id_proof})
-        if(aff_id) {
-            throw Error('Document ID Already Exits!')
-        }
-
-        if(date_reg === false) {
-            throw Error('Date format is incorrect!')
-        }
-
-        //hashing
-        const salt = await bcrypt.genSalt(10)
-        const hash_id = await bcrypt.hash(id_proof, salt)
-        const hash_pass = await bcrypt.hash(pass, salt)
-
-        await affiliates.create({ name, email, phone, experience, id_type, id_proof : hash_id, expectation, institution, dob, password: hash_pass})
-
-        await instanceResend.emails.send({
-            from: 'network@hexstaruniverse.com',
-            to: email,
-            subject: 'Welcome aboard, future Affiliate partner!',
-            html: `<html>
-            <head>
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-            </head>
-            <body style="font-family: 'Poppins', sans-serif; font-size: 16px;">
-            <div>
-            <table style="width: 69.9834%;" role="presentation" border="0" width="100%" cellspacing="0" cellpadding="0" align="center">
-            <tbody>
-            <tr>
-            <td style="width: 100%;">
-            <p><span>Hi ${name},</span></p>
-            <p>Thanks for taking the leap and joining us in the Hex-Star Universe affiliate fam!  We're thrilled to have you on board and can't wait to see what amazing things you'll do with our brand.<br/></p>
-            <p>Keep your eyes peeled for a follow-up email (or maybe even a call!) in the next few days. We'll be in touch with all the juicy details about the program, exclusive resources, and how you can connect with other awesome affiliates.<br/></p>
-            <p>In the meantime, feel free to browse our content, get familiar with our products, and let your creative juices flow. Use <b>${pass}</b> as your login password!<br/></p>
-            <p><span>Excited to have you with us,</span><br/></p>
-            <p><span>The Hex-Star Universe Affiliate Team</span></P>
-            </td>
-            </tr>
-            </tbody>
-            </table>
-            </div>
-            </body>
-            </html>`
-          });
-
-        const token = createToken(name._id)
-
-        res.status(200).json({email, token})
-    } catch (error) {
-        res.status(400).json({error: error.message})
+  try {
+    // Mandatory fields
+    if (!name || !email || !phone || !institution || !dob) {
+      throw Error('Mandatory fields must be filled!');
     }
-}
+
+    if (name.length <= 1) {
+      throw Error('Enter a valid name');
+    }
+
+    if (!validator.isEmail(email)) {
+      throw Error('Email is not valid!');
+    }
+
+    // Email uniqueness
+    if (await affiliates.findOne({ email })) {
+      throw Error('Email already exists!');
+    }
+
+    // Phone format & uniqueness
+    if (!isNum || phone.toString().length !== 10) {
+      throw Error('Enter a valid phone number');
+    }
+    if (await affiliates.findOne({ phone })) {
+      throw Error('Phone number already exists!');
+    }
+
+    // DOB format
+    if (!dateReg) {
+      throw Error('Date format is incorrect! Use DD-MM-YYYY');
+    }
+
+    // Hash the generated password
+    const salt = await bcrypt.genSalt(10);
+    const hashPass = await bcrypt.hash(defaultPass, salt);
+
+    // Create affiliate record
+    await affiliates.create({
+      name,
+      email,
+      phone,
+      experience,
+      expectations,
+      institution,
+      dob,
+      password: hashPass
+    });
+
+    // Send welcome email
+    await instanceResend.emails.send({
+      from: 'network@hexstaruniverse.com',
+      to: email,
+      subject: 'Welcome aboard, future Affiliate partner!',
+      html: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to Hex-Star Universe</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f4f7;
+      color: #333333;
+    }
+    .email-wrapper {
+      width: 100%;
+      background-color: #f4f4f7;
+      padding: 20px 0;
+    }
+    .email-content {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .email-header {
+      background-color: #6637ed;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: 600;
+    }
+    .email-body {
+      padding: 30px 25px;
+      line-height: 1.6;
+      font-size: 16px;
+      color: #555555;
+    }
+    .highlight {
+      display: inline-block;
+      background-color: #e0deff;
+      color: #6637ed;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-weight: 600;
+      margin: 10px 0;
+    }
+    .email-footer {
+      background-color: #f4f4f7;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #999999;
+    }
+    a.button {
+      display: inline-block;
+      background-color: #6637ed;
+      color: #ffffff !important;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-weight: 600;
+      margin-top: 15px;
+    }
+    @media (max-width: 620px) {
+      .email-content { margin: 0 15px; }
+      .email-header { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <table role="presentation" class="email-wrapper" width="100%">
+    <tr>
+      <td align="center">
+        <table role="presentation" class="email-content" width="100%">
+          <!-- Header -->
+          <tr>
+            <td class="email-header">
+              Welcome to Hex-Star Universe!
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td class="email-body">
+              <p>Hi ${name},</p>
+              <p>Welcome aboard to the <strong>Hex-Star Universe Affiliate Program</strong>! We’re thrilled to have your energy and ideas join our community.</p>
+              <p>Your login password is:</p>
+              <p class="highlight">${defaultPass}</p>
+              <p>Over the next few days, you’ll receive:</p>
+              <ul>
+                <li>Program guidelines & best practices</li>
+                <li>Exclusive resources & creatives</li>
+                <li>Access to our affiliate community</li>
+                <li>Prize money based on your performance</li>
+              </ul>
+              <a href="https://affiliate.hexstaruniverse.com/login" target="_blank" class="button">Log In Now</a>
+              <p>If you have any questions, just hit reply — we’re here to help!</p>
+              <p>Excited to have you on the team,</p>
+              <p><strong>Team Hex-Star Universe</strong></p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td class="email-footer">
+              © ${new Date().getFullYear()} Hex-Star Universe. All rights reserved.
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+`
+    });
+
+    // Generate auth token
+    const token = createToken(email); 
+    res.status(200).json({ email, token });
+
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 
 const login = async (req, res) => {
 

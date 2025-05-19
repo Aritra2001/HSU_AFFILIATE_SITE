@@ -24,14 +24,11 @@ const addStudent = async (req, res) => {
         if(payment === 'null') {
             throw Error('Select a valid Payment status!')
         }
-        if(amount > 599 || amount < 0) {
+        if(amount > 2999 || amount < 0) {
             throw Error('Enter the Amount Correctly!')
         }
-        if(payment === 'Paid' && (amount !== '399' || amount !=='599' )) {
-            throw Error('Payment has to be 399 or 599 for Status Paid!')
-        }
-        if(payment === 'Pending' && amount !== '0') {
-            throw Error('Payment has to be 0 for Status Pending!')
+        if(payment === 'Paid' && (amount < '2299' )) {
+            throw Error('Payment amount has to be greter than 2299!')
         }
         const user_id = req.user._id
         const students = await student.create({name, email, phone, payment, amount, user_id})

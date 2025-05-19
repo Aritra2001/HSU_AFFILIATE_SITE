@@ -28,7 +28,7 @@ const Home = () => {
       const shareData = {
         title: 'Check this out!',
         text: 'Here is a link I wanted to share with you.',
-        url: 'https://hexstaruniverse.com/all-courses/', // Replace with the URL you want to share
+        url: 'https://hexstaruniverse.com/all-courses/sttip-batch3/', // Replace with the URL you want to share
       };
   
       try {
@@ -139,7 +139,7 @@ const Home = () => {
 
 
   return (
-    <div className='flex w-full h-full flex flex-col gap-8 justify-center items-center'>
+    <div className='flex w-full h-full flex-col gap-8 justify-center items-center'>
       <Navbar />
       <div className="text-white text-[24px] font-bold font-['Poppins'] flex items-center justify-center sm:text-[46px] sm:mt-[2vh] mt-2">
         Dashboard
@@ -199,7 +199,7 @@ const Home = () => {
           </p>
           <div className='flex flex-row text-[8px]'>
           <div className="w-[68px] h-[25px] bg-indigo-900 rounded-[5px] border border-zinc-300 items-center flex justify-center max-sm:ml-8 max-sm:h-[21px] max-sm:text-[8px] max-sm:w-[55px] max-sm:mt-[-1rem] relative">
-            {<RemainingDaysCounter targetDate="2024-07-15" />}
+            {<RemainingDaysCounter targetDate="2025-06-01" />}
           </div>
           <div class=" relative w-[100px] h-[24px] bg-zinc-200 rounded-md border-black text-black text-[10px] font-bold font-['Poppins'] items-center flex justify-center max-sm:w-[90px] max-sm:h-[20px] max-sm:text-[8px] max-sm:mt-[-1rem] ml-8" onClick={handleShare}>
           <p className='flex justify-center items-center gap-2 cursor-pointer'>Share Course<FaShare color='#6637ED'/></p>

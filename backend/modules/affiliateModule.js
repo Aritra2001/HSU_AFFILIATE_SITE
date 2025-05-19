@@ -20,15 +20,6 @@ const AffiliateSchema = new Schema({
     experience: {
         type: String,
     },
-    id_type: {
-        type: String,
-        required: true
-    },
-    id_proof: {
-        type: String,
-        required: true,
-        unique: true
-    },
     expectations: {
         type: String,
     },
@@ -44,6 +35,6 @@ const AffiliateSchema = new Schema({
         type: String,
         required: true
     }
-}, {timestamps: true})
+}, { timestamps: true })
 
 module.exports = mongoose.model('Affiliate', AffiliateSchema)
