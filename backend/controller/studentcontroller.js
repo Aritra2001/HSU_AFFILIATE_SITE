@@ -27,9 +27,6 @@ const addStudent = async (req, res) => {
         if(amount > 2999 || amount < 0) {
             throw Error('Enter the Amount Correctly!')
         }
-        if(payment === 'Paid' && (amount < '2299' )) {
-            throw Error('Payment amount has to be greter than 2299!')
-        }
         const user_id = req.user._id
         const students = await student.create({name, email, phone, payment, amount, user_id})
         res.status(200).json(students)
